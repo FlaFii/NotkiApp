@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotkiApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;700&family=Alegreya+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./main.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header__logo">NotkiApp</h1>
+    </header>
+    <div class="wrapper">
+        <aside class="aside">
+            <div class="aside__btns">
+                <button class="aside__btns__btn primary-btn aside__btns-add-btn"><img src="./icons/plus.svg"
+                        alt=""></button>
+                <button class="aside__btns__btn primary-btn"><img src="./icons/search.svg" alt=""></button>
+                <button class="aside__btns__btn primary-btn"><img src="./icons/filter.svg" alt=""></button>
+                <button class="aside__btns__btn primary-btn"><img src="./icons/trash.svg" alt=""></button>
+            </div>
+        </aside>
+        <main class="notes">
+            <button class="notes__add-btn primary-btn"><img src="./icons/plus.svg" alt="" class="notes__add-btn-icon">
+                Dodaj notatkę </button>
+            <div class="notes__item">
+                <h2 class="notes__item-title">Tytuł notatki</h2>
+                <p class="notes__item-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut ratione minus
+                    beatae
+                    porro nesciunt maiores molestiae sapiente. Reprehenderit impedit nemo earum maiores excepturi et
+                    quidem.
+                </p>
+                <div class="notes__item-bottom">
+                    <p class="notes__item-date">25.33.2025</p>
+                    <div class="notes__item-controls">
+                        <button class="notes__item-btn notes__item-btn--delete secondary-btn secondary-btn--delete"><img
+                                src="./icons/trash.svg" alt=""></button>
+                        <button class="notes__item-btn notes__item-btn--edit secondary-btn"><img src="./icons/edit.svg"
+                                alt=""></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <div class="modal modal--active">
+        <div class="modal__overlay"></div>
+        <div class="modal__window">
+            <button type="button" class="modal__window-close-btn close-btn"><img src="./icons/x-circle.svg"
+                    alt=""></button>
+
+            <div class="modal__view modal__view--add-note ">
+                <form class="form">
+                    <div class="form__box">
+                        <label class="form__box-title" for="title">Wpisz tytuł:</label>
+                        <input class="form__box-input" type="text" id="title">
+                    </div>
+                    <div class="form__box">
+                        <label class="form__box-title" for="content">Wpisz treść:</label>
+                        <textarea class="form__box-textarea" id="content"></textarea>
+                    </div>
+                    <div class="form__box">
+                        <label class="form__box-title" for="category">Wybierz kategorię:</label>
+                        <div class="category__box" id="category">
+                            <button type="button"
+                                class="category__box-option category__box-option--add-cat primary-btn"><img
+                                    src="./icons/plus.svg" alt="">Dodaj kategorię</button>
+                            <button type="button" class="category__box-option">Praca</button>
+                            <button type="button" class="category__box-option">dom</button>
+                            <button type="button" class="category__box-option">dupa</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="controls">
+                    <button type="submit" class="controls__btn primary-btn">Utwórz notatke</button>
+                    <button type="button"
+                        class="controls__btn controls__btn--cancel primary-btn primary-btn--danger">Anuluj</button>
+                </div>
+            </div>
+
+
+            <div class="modal__view modal__view--search modal__view--active">
+                <div class="form__box">
+                    <label class="form__box-title" for="search">Wyszukaj po tytule:</label>
+                    <input class="form__box-input" type="text" id="search">
+                </div>
+                <div class="controls">
+                    <button type="submit" class="controls__btn primary-btn">Wyszukaj</button>
+                    <button type="button"
+                        class="controls__btn controls__btn--cancel primary-btn primary-btn--danger">Anuluj</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

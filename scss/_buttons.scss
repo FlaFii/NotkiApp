@@ -1,0 +1,68 @@
+@use "./tokens" as t;
+.primary-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: none;
+	border: 3px solid t.$accent;
+	border-radius: t.$radius-sm;
+}
+.primary-btn:active,
+.primary-btn:focus {
+	outline: 2px solid t.$font-dark;
+	background-color: t.$accent;
+	color: t.$font-light;
+}
+.primary-btn--danger {
+	border: 3px solid t.$danger;
+}
+.primary-btn--danger:active,
+.primary-btn--danger:focus {
+	outline: 2px solid t.$font-dark;
+	background-color: t.$danger-dark;
+	color: t.$font-light;
+}
+.primary-btn img {
+	pointer-events: none;
+}
+.secondary-btn {
+	background-color: t.$accent;
+}
+.secondary-btn img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20px;
+	height: 20px;
+}
+.secondary-btn:focus,
+.secondary-btn:active {
+	background-color: t.$accent-dark;
+	outline: 2px solid t.$font-dark;
+}
+.secondary-btn--delete {
+	background-color: t.$danger;
+}
+.secondary-btn--delete:focus,
+.secondary-btn--delete:active {
+	background-color: t.$danger-dark;
+	outline: 2px solid t.$font-dark;
+}
+.close-btn {
+	align-self: flex-end;
+	padding: 0.6em;
+	background: none;
+	img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		pointer-events: none;
+	}
+}
+.close-btn:focus,
+.close-btn:active {
+	outline: 2px solid t.$font-dark;
+	border-radius: t.$radius-md;
+}

@@ -1,0 +1,74 @@
+@use "./tokens" as t;
+.notes {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr;
+	align-items: start;
+	width: 100%;
+	padding: 2em;
+	gap: 1.4em;
+	&__add-btn {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+		display: flex;
+		// display: none;
+		justify-content: center;
+		align-items: center;
+		width: 70%;
+		padding: 0.4em 0.8em;
+		font-family: t.$main-font;
+		font-size: t.$text-lg;
+	}
+	&__add-btn-icon {
+		margin-right: 0.4em;
+	}
+	&__item {
+		padding: 1.4em;
+		background-color: t.$category-12;
+		border-radius: t.$radius-md;
+		&-title {
+			position: relative;
+			padding-bottom: 0.2em;
+			margin-bottom: 0.6em;
+			font-family: t.$heading-font;
+			font-size: t.$text-xl;
+		}
+		&-title::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 1.2px;
+			background: repeating-linear-gradient(
+				to right,
+				t.$dark-bg-lighter 0px,
+				t.$dark-bg-lighter 20px,
+				transparent 20px,
+				transparent 35px
+			);
+		}
+		&-text {
+			font-family: t.$main-font;
+			font-size: t.$text-md;
+		}
+		&-bottom {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 2em;
+		}
+		&-date {
+			font-size: t.$text-md;
+		}
+		&-btn {
+			padding: 0.8em;
+			border-radius: t.$radius-sm;
+		}
+		&-btn--delete {
+			margin-right: 1em;
+		}
+	}
+}

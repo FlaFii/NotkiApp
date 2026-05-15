@@ -1,0 +1,372 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  min-height: calc(100% - 57.4px);
+}
+
+.form__box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 1.6em 0;
+}
+.form__box-title {
+  margin: 0 0.4em 0.6em 0.4em;
+  font-size: 2rem;
+  font-family: "Alegreya Sans SC", "sans-serif";
+  font-weight: bold;
+}
+.form__box-input, .form__box-textarea {
+  padding: 0.6em;
+  font-size: 1.6rem;
+  border-radius: 10px;
+}
+.form__box-input:focus, .form__box-input:active, .form__box-textarea:focus, .form__box-textarea:active {
+  outline: 2px solid #1b1c22;
+}
+.form__box-textarea {
+  resize: none;
+  height: 100px;
+}
+
+.form__box:first-child {
+  margin: 0;
+}
+
+.notes {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  width: 100%;
+  padding: 2em;
+  gap: 1.4em;
+}
+.notes__add-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  padding: 0.4em 0.8em;
+  font-family: "Alegreya Sans", "sans-serif ";
+  font-size: 2rem;
+}
+.notes__add-btn-icon {
+  margin-right: 0.4em;
+}
+.notes__item {
+  padding: 1.4em;
+  background-color: #6cb5de;
+  border-radius: 12px;
+}
+.notes__item-title {
+  position: relative;
+  padding-bottom: 0.2em;
+  margin-bottom: 0.6em;
+  font-family: "Alegreya Sans SC", "sans-serif";
+  font-size: 2.4rem;
+}
+.notes__item-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.2px;
+  background: repeating-linear-gradient(to right, #4d4d56 0px, #4d4d56 20px, transparent 20px, transparent 35px);
+}
+.notes__item-text {
+  font-family: "Alegreya Sans", "sans-serif ";
+  font-size: 1.6rem;
+}
+.notes__item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+.notes__item-date {
+  font-size: 1.6rem;
+}
+.notes__item-btn {
+  padding: 0.8em;
+  border-radius: 10px;
+}
+.notes__item-btn--delete {
+  margin-right: 1em;
+}
+
+.primary-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: 3px solid #ec9832;
+  border-radius: 10px;
+}
+
+.primary-btn:active,
+.primary-btn:focus {
+  outline: 2px solid #1b1c22;
+  background-color: #ec9832;
+  color: #ecebe4;
+}
+
+.primary-btn--danger {
+  border: 3px solid #e94957;
+}
+
+.primary-btn--danger:active,
+.primary-btn--danger:focus {
+  outline: 2px solid #1b1c22;
+  background-color: #e42535;
+  color: #ecebe4;
+}
+
+.primary-btn img {
+  pointer-events: none;
+}
+
+.secondary-btn {
+  background-color: #ec9832;
+}
+
+.secondary-btn img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+.secondary-btn:focus,
+.secondary-btn:active {
+  background-color: #e08515;
+  outline: 2px solid #1b1c22;
+}
+
+.secondary-btn--delete {
+  background-color: #e94957;
+}
+
+.secondary-btn--delete:focus,
+.secondary-btn--delete:active {
+  background-color: #e42535;
+  outline: 2px solid #1b1c22;
+}
+
+.close-btn {
+  align-self: flex-end;
+  padding: 0.6em;
+  background: none;
+}
+.close-btn img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+}
+
+.close-btn:focus,
+.close-btn:active {
+  outline: 2px solid #1b1c22;
+  border-radius: 12px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.modal--active {
+  display: flex;
+}
+.modal__overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(27, 28, 34, 0.95);
+  z-index: 1;
+}
+.modal__window {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 90%;
+  height: 95%;
+  padding: 1.6em;
+  border-radius: 12px;
+  background-color: #fdfff7;
+  z-index: 10;
+}
+.modal__view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.modal__view--add-note {
+  display: none;
+}
+.modal__view--add-note .category__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 120px;
+  padding: 1.2em;
+  border: 2px solid #1b1c22;
+  border-radius: 10px;
+  overflow-y: auto;
+  overflow-x: none;
+}
+.modal__view--add-note .category__box:focus,
+.modal__view--add-note .category__box:active {
+  outline: 2px solid #1b1c22;
+}
+.modal__view--add-note .category__box-option {
+  width: 90%;
+  margin-bottom: 0.6em;
+  padding: 0.8em;
+  font-size: 1.6rem;
+  font-family: "Alegreya Sans SC", "sans-serif";
+  font-weight: bold;
+  background-color: #9ece9a;
+  border-radius: 12px;
+}
+.modal__view--add-note .category__box-option:not(:first-child):focus,
+.modal__view--add-note .category__box-option:not(:first-child):active {
+  background-color: #3a3a41;
+  outline: 2px solid #ecebe4;
+  color: #ecebe4;
+}
+.modal__view--add-note .category__box-option:first-child:focus,
+.modal__view--add-note .category__box-option:first-child:active {
+  background-color: #e08515;
+}
+.modal__view--add-note .category__box-option--add-cat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+}
+.modal__view--add-note .category__box-option:last-child {
+  margin-bottom: 0;
+}
+.modal__view--search .form__box {
+  margin-bottom: 3em;
+}
+.modal .controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.8em;
+}
+.modal .controls__btn {
+  width: 80%;
+  padding: 0.6em 1.2em;
+  font-size: 1.6rem;
+  font-family: "Alegreya Sans SC", "sans-serif";
+  font-weight: bold;
+}
+.modal .controls__btn:first-child {
+  margin-bottom: 0.8em;
+}
+.modal__view--dupa {
+  display: none;
+}
+.modal__view--active {
+  display: flex;
+}
+
+body {
+  background-color: #fdfff7;
+  font-family: "Alegreya Sans", "sans-serif ";
+}
+
+.header__logo {
+  padding: 0.4em 0.8em;
+  font-family: "Alegreya Sans SC", "sans-serif";
+  font-size: 2.8rem;
+  text-align: center;
+  border-bottom: 1px solid #3a3a41;
+}
+
+.aside {
+  position: relative;
+  border-right: 1px solid #3a3a41;
+}
+.aside__btns {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0.8em 1em 0 1em;
+}
+.aside__btns__btn {
+  min-width: 40px;
+  min-height: 40px;
+  margin: 0.8em 0.4em;
+  padding: 1rem;
+}/*# sourceMappingURL=style.css.map */

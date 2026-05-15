@@ -1,0 +1,38 @@
+@use "./reset";
+@use "./components";
+@use "./notes";
+@use "./buttons";
+@use "./modals";
+@use "./tokens" as t;
+
+body {
+	background-color: t.$light-bg;
+	font-family: t.$main-font;
+}
+// HEADER
+.header {
+	&__logo {
+		padding: 0.4em 0.8em;
+		font-family: t.$heading-font;
+		font-size: t.$text-2xl;
+		text-align: center;
+		border-bottom: 1px solid t.$dark-bg;
+	}
+}
+.aside {
+	position: relative;
+	border-right: 1px solid t.$dark-bg;
+	&__btns {
+		position: sticky;
+		top: 0;
+		display: flex;
+		flex-direction: column;
+		padding: 0.8em 1em 0 1em;
+		&__btn {
+			min-width: 40px;
+			min-height: 40px;
+			margin: 0.8em 0.4em;
+			padding: 1rem;
+		}
+	}
+}

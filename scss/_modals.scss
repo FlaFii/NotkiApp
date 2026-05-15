@@ -1,0 +1,118 @@
+@use "./tokens" as t;
+@use "./buttons";
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	&--active {
+		display: flex;
+	}
+	&__overlay {
+		width: 100%;
+		height: 100%;
+		background-color: t.$overlay-bg;
+		z-index: 1;
+	}
+	&__window {
+		display: flex;
+		flex-direction: column;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+		width: 90%;
+		height: 95%;
+		padding: 1.6em;
+		border-radius: t.$radius-md;
+		background-color: t.$light-bg;
+		z-index: 10;
+	}
+	&__view {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+	&__view--add-note {
+		display: none;
+		.category__box {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 100%;
+			height: 120px;
+			padding: 1.2em;
+			border: 2px solid t.$font-dark;
+			border-radius: t.$radius-sm;
+			overflow-y: auto;
+			overflow-x: none;
+		}
+		.category__box:focus,
+		.category__box:active {
+			outline: 2px solid t.$font-dark;
+		}
+		.category__box-option {
+			width: 90%;
+			margin-bottom: 0.6em;
+			padding: 0.8em;
+			font-size: t.$text-md;
+			font-family: t.$heading-font;
+			font-weight: bold;
+			background-color: t.$category-1;
+			border-radius: t.$radius-md;
+		}
+		.category__box-option:not(:first-child):focus,
+		.category__box-option:not(:first-child):active {
+			background-color: t.$dark-bg;
+			outline: 2px solid t.$font-light;
+			color: t.$font-light;
+		}
+		.category__box-option:first-child:focus,
+		.category__box-option:first-child:active {
+			background-color: t.$accent-dark;
+		}
+		.category__box-option--add-cat {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: none;
+		}
+		.category__box-option:last-child {
+			margin-bottom: 0;
+		}
+	}
+	&__view--search {
+		.form__box {
+			margin-bottom: 3em;
+		}
+	}
+	.controls {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-top: 0.8em;
+		&__btn {
+			width: 80%;
+			padding: 0.6em 1.2em;
+			font-size: t.$text-md;
+			font-family: t.$heading-font;
+			font-weight: bold;
+		}
+		&__btn:first-child {
+			margin-bottom: 0.8em;
+		}
+	}
+	&__view--dupa {
+		display: none;
+	}
+	&__view--active {
+		display: flex;
+	}
+}
