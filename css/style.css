@@ -80,6 +80,13 @@ table {
   margin: 0;
 }
 
+.question-title {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Alegreya Sans SC", "sans-serif";
+  font-weight: bold;
+}
+
 .notes {
   position: relative;
   display: grid;
@@ -258,7 +265,7 @@ table {
   z-index: 10;
 }
 .modal__view {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -312,8 +319,17 @@ table {
 .modal__view--add-note .category__box-option:last-child {
   margin-bottom: 0;
 }
+.modal__view--add-note .form {
+  width: 100%;
+}
 .modal__view--search .form__box {
   margin-bottom: 3em;
+}
+.modal__view--search .form__box-title {
+  text-align: center;
+}
+.modal__view--active {
+  display: flex;
 }
 .modal .controls {
   display: flex;
@@ -321,7 +337,7 @@ table {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 0.8em;
+  margin-top: 3em;
 }
 .modal .controls__btn {
   width: 80%;
@@ -332,12 +348,6 @@ table {
 }
 .modal .controls__btn:first-child {
   margin-bottom: 0.8em;
-}
-.modal__view--dupa {
-  display: none;
-}
-.modal__view--active {
-  display: flex;
 }
 
 body {

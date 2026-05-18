@@ -21,15 +21,19 @@
     <div class="wrapper">
         <aside class="aside">
             <div class="aside__btns">
-                <button class="aside__btns__btn primary-btn aside__btns-add-btn"><img src="./icons/plus.svg"
+                <button data-action="aside-btn-add" class="aside__btns__btn primary-btn"><img src="./icons/plus.svg"
                         alt=""></button>
-                <button class="aside__btns__btn primary-btn"><img src="./icons/search.svg" alt=""></button>
-                <button class="aside__btns__btn primary-btn"><img src="./icons/filter.svg" alt=""></button>
-                <button class="aside__btns__btn primary-btn"><img src="./icons/trash.svg" alt=""></button>
+                <button data-action="aside-btn-search" class="aside__btns__btn primary-btn"><img
+                        src="./icons/search.svg" alt=""></button>
+                <button data-action="aside-btn-filter" class="aside__btns__btn primary-btn"><img
+                        src="./icons/filter.svg" alt=""></button>
+                <button data-action="aside-btn-delete-all" class="aside__btns__btn primary-btn"><img
+                        src="./icons/trash.svg" alt=""></button>
             </div>
         </aside>
         <main class="notes">
-            <button class="notes__add-btn primary-btn"><img src="./icons/plus.svg" alt="" class="notes__add-btn-icon">
+            <button data-action="notes-btn-add" class="notes__add-btn primary-btn"><img src="./icons/plus.svg" alt=""
+                    class="notes__add-btn-icon">
                 Dodaj notatkę </button>
             <div class="notes__item">
                 <h2 class="notes__item-title">Tytuł notatki</h2>
@@ -52,7 +56,7 @@
     </div>
 
 
-    <div class="modal modal--active">
+    <div class="modal">
         <div class="modal__overlay"></div>
         <div class="modal__window">
             <button type="button" class="modal__window-close-btn close-btn"><img src="./icons/x-circle.svg"
@@ -82,21 +86,47 @@
                 </form>
                 <div class="controls">
                     <button type="submit" class="controls__btn primary-btn">Utwórz notatke</button>
-                    <button type="button"
-                        class="controls__btn controls__btn--cancel primary-btn primary-btn--danger">Anuluj</button>
+                    <button data-action="modal-view-cancel-btn" type="button"
+                        class="controls__btn primary-btn primary-btn--danger">Anuluj</button>
                 </div>
             </div>
 
 
-            <div class="modal__view modal__view--search modal__view--active">
+            <div class="modal__view modal__view--search">
                 <div class="form__box">
-                    <label class="form__box-title" for="search">Wyszukaj po tytule:</label>
+                    <label class="form__box-title" for="search">Wyszukaj po tytule</label>
                     <input class="form__box-input" type="text" id="search">
                 </div>
                 <div class="controls">
                     <button type="submit" class="controls__btn primary-btn">Wyszukaj</button>
-                    <button type="button"
-                        class="controls__btn controls__btn--cancel primary-btn primary-btn--danger">Anuluj</button>
+                    <button data-action="modal-view-cancel-btn" type="button"
+                        class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
+                </div>
+            </div>
+
+            <div class="modal__view modal__view--filter">
+                <div class="form__box">
+                    <label class="form__box-title" for="date">Data:</label>
+                    <input class="form__box-input" type="text" id="date">
+                </div>
+                <div class="form__box">
+                    <label class="form__box-title" for="category">Kategoria:</label>
+                    <input class="form__box-input" type="text" id="category">
+                </div>
+                <div class="controls">
+                    <button type="submit" class="controls__btn primary-btn">Wyszukaj</button>
+                    <button data-action="modal-view-cancel-btn" type="button"
+                        class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
+                </div>
+            </div>
+
+
+            <div class="modal__view modal__view--delete-all ">
+                <h2 class="question-title">Czy napewno chcesz usunąć <strong>wszystkie</strong> notatki?</h2>
+                <div class="controls">
+                    <button type="submit" class="controls__btn primary-btn">Tak usuń</button>
+                    <button data-action="modal-view-cancel-btn" type="button"
+                        class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
                 </div>
             </div>
         </div>

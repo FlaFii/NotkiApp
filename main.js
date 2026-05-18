@@ -1,8 +1,15 @@
 let asideAddBtn,
+	asideSearchBtn,
+	asideFilterBtn,
+	asideDeleteAllBtn,
 	notesAddBtn,
-	modalViewAddNoteCancelBtn,
+	// modalViewAddNoteCancelBtn,
+	modalViewCancelBtns = [],
 	modal,
 	modalViewAddNote,
+	modalViewSearch,
+	modalViewfilter,
+	modalViewDeleteAll,
 	modalOverlay,
 	modalCloseBtn,
 	modalViews = [];
@@ -12,13 +19,21 @@ const main = () => {
 	prepareDOMEvents();
 };
 const prepareDOMElements = () => {
-	asideAddBtn = document.querySelector(".aside__btns-add-btn");
-	notesAddBtn = document.querySelector(".notes__add-btn");
+	asideAddBtn = document.querySelector('[data-action="aside-btn-add"]');
+	asideSearchBtn = document.querySelector('[data-action="aside-btn-search"]');
+	asideFilterBtn = document.querySelector('[data-action="aside-btn-filter"]');
+	asideDeleteAllBtn = document.querySelector(
+		'[data-action="aside-btn-delete-all"]',
+	);
+	notesAddBtn = document.querySelector('[data-action="notes-btn-add"]');
 	modal = document.querySelector(".modal");
 	modalViewAddNote = document.querySelector(".modal__view--add-note");
+	modalViewSearch = document.querySelector(".modal__view--search");
+	modalViewFilter = document.querySelector(".modal__view--filter");
+	modalViewDeleteAll = document.querySelector(".modal__view--delete-all");
 	modalCloseBtn = modal.querySelector(".modal__window-close-btn");
-	modalViewAddNoteCancelBtn = modalViewAddNote.querySelector(
-		".controls__btn--cancel",
+	modalViewCancelBtns = document.querySelectorAll(
+		'[data-action="modal-view-cancel-btn"]',
 	);
 	modalOverlay = document.querySelector(".modal__overlay");
 	modalViews = modal.querySelectorAll(".modal__view");
@@ -26,8 +41,15 @@ const prepareDOMElements = () => {
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
 	notesAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
+	asideSearchBtn.addEventListener("click", () => openModal(modalViewSearch));
+	asideFilterBtn.addEventListener("click", () => openModal(modalViewFilter));
+	asideDeleteAllBtn.addEventListener("click", () =>
+		openModal(modalViewDeleteAll),
+	);
 	modalCloseBtn.addEventListener("click", closeModal);
-	modalViewAddNoteCancelBtn.addEventListener("click", closeModal);
+	modalViewCancelBtns.forEach((btn) =>
+		btn.addEventListener("click", closeModal),
+	);
 	modalOverlay.addEventListener("click", closeModal);
 	window.addEventListener("keydown", handleEscapeKey);
 };

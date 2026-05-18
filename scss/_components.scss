@@ -35,3 +35,9 @@
 .form__box:first-child {
 	margin: 0;
 }
+.question-title {
+	text-align: center;
+	font-size: t.$text-lg;
+	font-family: t.$heading-font;
+	font-weight: bold;
+}
