@@ -264,6 +264,15 @@ table {
   background-color: #fdfff7;
   z-index: 10;
 }
+.modal__view-title {
+  position: absolute;
+  top: 1.2em;
+  left: 1em;
+  margin: 0.6em;
+  font-size: 1.6rem;
+  font-family: "Alegreya Sans SC", "sans-serif";
+  font-weight: bold;
+}
 .modal__view {
   display: none;
   flex-direction: column;
@@ -327,6 +336,55 @@ table {
 }
 .modal__view--search .form__box-title {
   text-align: center;
+}
+.modal__view--add-category .category__color-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1em;
+}
+.modal__view--add-category .category-color {
+  width: 55px;
+  height: 55px;
+  margin: 0.5em;
+  border-radius: 50%;
+  border: 2px solid #4d4d56;
+}
+.modal__view--add-category .category-color--one {
+  background-color: #9ece9a;
+}
+.modal__view--add-category .category-color--two {
+  background-color: #e4ed8f;
+}
+.modal__view--add-category .category-color--three {
+  background-color: #e9e67e;
+}
+.modal__view--add-category .category-color--four {
+  background-color: #f9d362;
+}
+.modal__view--add-category .category-color--five {
+  background-color: #fec871;
+}
+.modal__view--add-category .category-color--six {
+  background-color: #fdaa86;
+}
+.modal__view--add-category .category-color--seven {
+  background-color: #ec8398;
+}
+.modal__view--add-category .category-color--eight {
+  background-color: #efabac;
+}
+.modal__view--add-category .category-color--nine {
+  background-color: #c9b1fb;
+}
+.modal__view--add-category .category-color--ten {
+  background-color: #47e0ff;
+}
+.modal__view--add-category .category-color--eleven {
+  background-color: #75a3d1;
+}
+.modal__view--add-category .category-color--twelve {
+  background-color: #6cb5de;
 }
 .modal__view--active {
   display: flex;

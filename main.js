@@ -3,6 +3,7 @@ let asideAddBtn,
 	asideFilterBtn,
 	asideDeleteAllBtn,
 	notesAddBtn,
+	AddCategoryBtn,
 	// modalViewAddNoteCancelBtn,
 	modalViewCancelBtns = [],
 	modal,
@@ -10,6 +11,7 @@ let asideAddBtn,
 	modalViewSearch,
 	modalViewfilter,
 	modalViewDeleteAll,
+	modalViewAddCategory,
 	modalOverlay,
 	modalCloseBtn,
 	modalViews = [];
@@ -26,11 +28,13 @@ const prepareDOMElements = () => {
 		'[data-action="aside-btn-delete-all"]',
 	);
 	notesAddBtn = document.querySelector('[data-action="notes-btn-add"]');
+	AddCategoryBtn = document.querySelector('[data-action="add-category"]');
 	modal = document.querySelector(".modal");
 	modalViewAddNote = document.querySelector(".modal__view--add-note");
 	modalViewSearch = document.querySelector(".modal__view--search");
 	modalViewFilter = document.querySelector(".modal__view--filter");
 	modalViewDeleteAll = document.querySelector(".modal__view--delete-all");
+	modalViewAddCategory = document.querySelector(".modal__view--add-category");
 	modalCloseBtn = modal.querySelector(".modal__window-close-btn");
 	modalViewCancelBtns = document.querySelectorAll(
 		'[data-action="modal-view-cancel-btn"]',
@@ -46,6 +50,9 @@ const prepareDOMEvents = () => {
 	asideDeleteAllBtn.addEventListener("click", () =>
 		openModal(modalViewDeleteAll),
 	);
+	AddCategoryBtn.addEventListener("click", () =>
+		openModal(modalViewAddCategory),
+	);
 	modalCloseBtn.addEventListener("click", closeModal);
 	modalViewCancelBtns.forEach((btn) =>
 		btn.addEventListener("click", closeModal),
@@ -54,6 +61,7 @@ const prepareDOMEvents = () => {
 	window.addEventListener("keydown", handleEscapeKey);
 };
 const openModal = (modalView) => {
+	closeModal();
 	modal.classList.add("modal--active");
 	modalView.classList.add("modal__view--active");
 };

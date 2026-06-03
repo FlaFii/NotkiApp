@@ -31,6 +31,15 @@
 		background-color: t.$light-bg;
 		z-index: 10;
 	}
+	&__view-title {
+		position: absolute;
+		top: 1.2em;
+		left: 1em;
+		margin: 0.6em;
+		font-size: t.$text-md;
+		font-family: t.$heading-font;
+		font-weight: bold;
+	}
 	&__view {
 		display: none;
 		flex-direction: column;
@@ -95,6 +104,57 @@
 		}
 		.form__box-title {
 			text-align: center;
+		}
+	}
+	&__view--add-category {
+		.category__color-box {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-rows: repeat(3, 1fr);
+			gap: 1em;
+		}
+		.category-color {
+			width: 55px;
+			height: 55px;
+			margin: 0.5em;
+			border-radius: 50%;
+			border: 2px solid t.$dark-bg-lighter;
+			&--one {
+				background-color: t.$category-1;
+			}
+			&--two {
+				background-color: t.$category-2;
+			}
+			&--three {
+				background-color: t.$category-3;
+			}
+			&--four {
+				background-color: t.$category-4;
+			}
+			&--five {
+				background-color: t.$category-5;
+			}
+			&--six {
+				background-color: t.$category-6;
+			}
+			&--seven {
+				background-color: t.$category-7;
+			}
+			&--eight {
+				background-color: t.$category-8;
+			}
+			&--nine {
+				background-color: t.$category-9;
+			}
+			&--ten {
+				background-color: t.$category-10;
+			}
+			&--eleven {
+				background-color: t.$category-11;
+			}
+			&--twelve {
+				background-color: t.$category-12;
+			}
 		}
 	}
 	&__view--active {

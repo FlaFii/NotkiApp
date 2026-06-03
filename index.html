@@ -75,7 +75,7 @@
                     <div class="form__box">
                         <label class="form__box-title" for="category">Wybierz kategorię:</label>
                         <div class="category__box" id="category">
-                            <button type="button"
+                            <button type="button" data-action="add-category"
                                 class="category__box-option category__box-option--add-cat primary-btn"><img
                                     src="./icons/plus.svg" alt="">Dodaj kategorię</button>
                             <button type="button" class="category__box-option">Praca</button>
@@ -125,6 +125,36 @@
                 <h2 class="question-title">Czy napewno chcesz usunąć <strong>wszystkie</strong> notatki?</h2>
                 <div class="controls">
                     <button type="submit" class="controls__btn primary-btn">Tak usuń</button>
+                    <button data-action="modal-view-cancel-btn" type="button"
+                        class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
+                </div>
+            </div>
+
+            <div class="modal__view modal__view--add-category ">
+                <h2 class="modal__view-title">Stwórz kategorię</h2>
+                <div class="form__box">
+                    <label class="form__box-title" for="category-name">Wpisz nazwę :</label>
+                    <input class="form__box-input" type="text" id="category-name">
+                </div>
+                <div class="form__box">
+                    <label class="form__box-title">Wybierz kolor :</label>
+                    <div class="category__color-box">
+                        <button type="button" class="category-color category-color--one"></button>
+                        <button type="button" class="category-color category-color--two"></button>
+                        <button type="button" class="category-color category-color--three"></button>
+                        <button type="button" class="category-color category-color--four"></button>
+                        <button type="button" class="category-color category-color--five"></button>
+                        <button type="button" class="category-color category-color--six"></button>
+                        <button type="button" class="category-color category-color--seven"></button>
+                        <button type="button" class="category-color category-color--eight"></button>
+                        <button type="button" class="category-color category-color--nine"></button>
+                        <button type="button" class="category-color category-color--ten"></button>
+                        <button type="button" class="category-color category-color--eleven"></button>
+                        <button type="button" class="category-color category-color--twelve"></button>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button type="submit" class="controls__btn primary-btn">Dodaj kategorię</button>
                     <button data-action="modal-view-cancel-btn" type="button"
                         class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
                 </div>
