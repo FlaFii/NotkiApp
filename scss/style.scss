@@ -27,12 +27,37 @@ body {
 		top: 0;
 		display: flex;
 		flex-direction: column;
-		padding: 0.8em 1em 0 1em;
+		padding: 0.8em;
 		&__btn {
 			min-width: 40px;
 			min-height: 40px;
-			margin: 0.8em 0.4em;
-			padding: 1rem;
+			margin: 0.8em 0em;
+			padding: 0.8em;
 		}
 	}
 }
+@media (min-width: 576px) {
+	.aside {
+		&__btns {
+			padding: 1.2em;
+		}
+	}
+	.header {
+		&__logo {
+			padding: 0.6em 1.2em;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.aside {
+		&__btns {
+			padding: 1.6em;
+		}
+	}
+}
+// X-Small			None		<576px
+// Small			sm		≥576px
+// Medium			md		≥768px
+// Large			lg		≥992px
+// Extra large		xl		≥1200px
+// Extra extra large	xxl		≥1400px

@@ -12,14 +12,17 @@
 		top: 50%;
 		left: 50%;
 		translate: -50% -50%;
-		display: flex;
-		// display: none;
+		// display: flex;
+		display: none;
 		justify-content: center;
 		align-items: center;
 		width: 70%;
 		padding: 0.4em 0.8em;
 		font-family: t.$main-font;
 		font-size: t.$text-lg;
+		background: none;
+		border: 3px solid t.$accent;
+		border-radius: t.$radius-sm;
 	}
 	&__add-btn-icon {
 		margin-right: 0.4em;
@@ -69,6 +72,25 @@
 		}
 		&-btn--delete {
 			margin-right: 1em;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.notes {
+		&__item {
+			margin: 0 1em;
+		}
+		padding: 2.2em;
+		gap: 1.8em;
+	}
+}
+@media (min-width: 768px) {
+	.notes {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr;
+		&__item {
+			margin: 0;
 		}
 	}
 }

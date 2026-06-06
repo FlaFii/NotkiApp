@@ -87,6 +87,11 @@ table {
   font-weight: bold;
 }
 
+@media (min-width: 576px) {
+  .wrapper {
+    min-height: calc(100% - 68.6px);
+  }
+}
 .notes {
   position: relative;
   display: grid;
@@ -101,13 +106,16 @@ table {
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 70%;
   padding: 0.4em 0.8em;
   font-family: "Alegreya Sans", "sans-serif ";
   font-size: 2rem;
+  background: none;
+  border: 3px solid #ec9832;
+  border-radius: 10px;
 }
 .notes__add-btn-icon {
   margin-right: 0.4em;
@@ -154,6 +162,24 @@ table {
   margin-right: 1em;
 }
 
+@media (min-width: 576px) {
+  .notes__item {
+    margin: 0 1em;
+  }
+  .notes {
+    padding: 2.2em;
+    gap: 1.8em;
+  }
+}
+@media (min-width: 768px) {
+  .notes {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  .notes__item {
+    margin: 0;
+  }
+}
 .primary-btn {
   display: flex;
   justify-content: center;
@@ -412,6 +438,13 @@ table {
   margin-bottom: 0.8em;
 }
 
+@media (min-width: 576px) {
+  .modal__window {
+    width: 80%;
+    height: 90%;
+    padding: 1.6em;
+  }
+}
 body {
   background-color: #fdfff7;
   font-family: "Alegreya Sans", "sans-serif ";
@@ -434,11 +467,25 @@ body {
   top: 0;
   display: flex;
   flex-direction: column;
-  padding: 0.8em 1em 0 1em;
+  padding: 0.8em;
 }
 .aside__btns__btn {
   min-width: 40px;
   min-height: 40px;
-  margin: 0.8em 0.4em;
-  padding: 1rem;
+  margin: 0.8em 0em;
+  padding: 0.8em;
+}
+
+@media (min-width: 576px) {
+  .aside__btns {
+    padding: 1.2em;
+  }
+  .header__logo {
+    padding: 0.6em 1.2em;
+  }
+}
+@media (min-width: 768px) {
+  .aside__btns {
+    padding: 1.6em;
+  }
 }/*# sourceMappingURL=style.css.map */

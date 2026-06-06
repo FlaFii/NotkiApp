@@ -41,3 +41,9 @@
 	font-family: t.$heading-font;
 	font-weight: bold;
 }
+
+@media (min-width: 576px) {
+	.wrapper {
+		min-height: calc(100% - 68.6px);
+	}
+}
