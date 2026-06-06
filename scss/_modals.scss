@@ -48,7 +48,8 @@
 		justify-content: center;
 		height: 100%;
 	}
-	&__view--add-note {
+	&__view--add-note,
+	&__view--edit-note {
 		display: none;
 		.category__box {
 			display: flex;

@@ -3,8 +3,9 @@ let asideAddBtn,
 	asideFilterBtn,
 	asideDeleteAllBtn,
 	notesAddBtn,
-	AddCategoryBtn,
-	// modalViewAddNoteCancelBtn,
+	addCategoryBtn,
+	notesDeleteBtn,
+	notesEditBtn,
 	modalViewCancelBtns = [],
 	modal,
 	modalViewAddNote,
@@ -12,9 +13,11 @@ let asideAddBtn,
 	modalViewfilter,
 	modalViewDeleteAll,
 	modalViewAddCategory,
+	modalViewDeleteNote,
+	modalViewEditNote,
 	modalOverlay,
 	modalCloseBtn,
-	modalViews = [];
+	moalViews = [];
 
 const main = () => {
 	prepareDOMElements();
@@ -28,12 +31,16 @@ const prepareDOMElements = () => {
 		'[data-action="aside-btn-delete-all"]',
 	);
 	notesAddBtn = document.querySelector('[data-action="notes-btn-add"]');
-	AddCategoryBtn = document.querySelector('[data-action="add-category"]');
+	notesDeleteBtn = document.querySelector('[data-action="notes-btn-delete"]');
+	notesEditBtn = document.querySelector('[data-action="notes-btn-edit"]');
+	addCategoryBtn = document.querySelector('[data-action="add-category"]');
 	modal = document.querySelector(".modal");
 	modalViewAddNote = document.querySelector(".modal__view--add-note");
+	modalViewEditNote = document.querySelector(".modal__view--edit-note");
 	modalViewSearch = document.querySelector(".modal__view--search");
 	modalViewFilter = document.querySelector(".modal__view--filter");
 	modalViewDeleteAll = document.querySelector(".modal__view--delete-all");
+	modalViewDeleteNote = document.querySelector(".modal__view--delete-note");
 	modalViewAddCategory = document.querySelector(".modal__view--add-category");
 	modalCloseBtn = modal.querySelector(".modal__window-close-btn");
 	modalViewCancelBtns = document.querySelectorAll(
@@ -45,12 +52,16 @@ const prepareDOMElements = () => {
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
 	notesAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
+	notesDeleteBtn.addEventListener("click", () =>
+		openModal(modalViewDeleteNote),
+	);
+	notesEditBtn.addEventListener("click", () => openModal(modalViewEditNote));
 	asideSearchBtn.addEventListener("click", () => openModal(modalViewSearch));
 	asideFilterBtn.addEventListener("click", () => openModal(modalViewFilter));
 	asideDeleteAllBtn.addEventListener("click", () =>
 		openModal(modalViewDeleteAll),
 	);
-	AddCategoryBtn.addEventListener("click", () =>
+	addCategoryBtn.addEventListener("click", () =>
 		openModal(modalViewAddCategory),
 	);
 	modalCloseBtn.addEventListener("click", closeModal);

@@ -45,9 +45,11 @@
                 <div class="notes__item-bottom">
                     <p class="notes__item-date">25.33.2025</p>
                     <div class="notes__item-controls">
-                        <button class="notes__item-btn notes__item-btn--delete secondary-btn secondary-btn--delete"><img
+                        <button data-action="notes-btn-delete"
+                            class="notes__item-btn notes__item-btn--delete secondary-btn secondary-btn--delete"><img
                                 src="./icons/trash.svg" alt=""></button>
-                        <button class="notes__item-btn notes__item-btn--edit secondary-btn"><img src="./icons/edit.svg"
+                        <button data-action="notes-btn-edit"
+                            class="notes__item-btn notes__item-btn--edit secondary-btn"><img src="./icons/edit.svg"
                                 alt=""></button>
                     </div>
                 </div>
@@ -92,6 +94,36 @@
                 </div>
             </div>
 
+            <div class="modal__view modal__view--edit-note ">
+                <h2 class="modal__view-title">Edytuj notatkę</h2>
+                <form class="form">
+                    <div class="form__box">
+                        <label class="form__box-title" for="title">Zmień tytuł:</label>
+                        <input class="form__box-input" type="text" id="title">
+                    </div>
+                    <div class="form__box">
+                        <label class="form__box-title" for="content">Zmień treść:</label>
+                        <textarea class="form__box-textarea" id="content"></textarea>
+                    </div>
+                    <div class="form__box">
+                        <label class="form__box-title" for="category">Zmień kategorię:</label>
+                        <div class="category__box" id="category">
+                            <button type="button" data-action="add-category"
+                                class="category__box-option category__box-option--add-cat primary-btn"><img
+                                    src="./icons/plus.svg" alt="">Dodaj kategorię</button>
+                            <button type="button" class="category__box-option">Praca</button>
+                            <button type="button" class="category__box-option">dom</button>
+                            <button type="button" class="category__box-option">dupa</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="controls">
+                    <button type="submit" class="controls__btn primary-btn">Zapisz</button>
+                    <button data-action="modal-view-cancel-btn" type="button"
+                        class="controls__btn primary-btn primary-btn--danger">Anuluj</button>
+                </div>
+            </div>
+
 
             <div class="modal__view modal__view--search">
                 <h2 class="modal__view-title">Wyszukiwanie</h2>
@@ -125,7 +157,16 @@
 
 
             <div class="modal__view modal__view--delete-all ">
-                <h2 class="question-title">Czy napewno chcesz usunąć <strong>wszystkie</strong> notatki?</h2>
+                <h2 class="question-title">Czy napewno chcesz usunąć wszystkie notatki?</h2>
+                <div class="controls">
+                    <button type="submit" class="controls__btn primary-btn">Tak usuń</button>
+                    <button data-action="modal-view-cancel-btn" type="button"
+                        class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
+                </div>
+            </div>
+
+            <div class="modal__view modal__view--delete-note ">
+                <h2 class="question-title">Czy napewno chcesz usunąć notatkę?</h2>
                 <div class="controls">
                     <button type="submit" class="controls__btn primary-btn">Tak usuń</button>
                     <button data-action="modal-view-cancel-btn" type="button"

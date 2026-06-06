@@ -281,10 +281,10 @@ table {
   justify-content: center;
   height: 100%;
 }
-.modal__view--add-note {
+.modal__view--add-note, .modal__view--edit-note {
   display: none;
 }
-.modal__view--add-note .category__box {
+.modal__view--add-note .category__box, .modal__view--edit-note .category__box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -297,10 +297,11 @@ table {
   overflow-x: none;
 }
 .modal__view--add-note .category__box:focus,
-.modal__view--add-note .category__box:active {
+.modal__view--add-note .category__box:active, .modal__view--edit-note .category__box:focus,
+.modal__view--edit-note .category__box:active {
   outline: 2px solid #1b1c22;
 }
-.modal__view--add-note .category__box-option {
+.modal__view--add-note .category__box-option, .modal__view--edit-note .category__box-option {
   width: 90%;
   margin-bottom: 0.6em;
   padding: 0.8em;
@@ -311,25 +312,27 @@ table {
   border-radius: 12px;
 }
 .modal__view--add-note .category__box-option:not(:first-child):focus,
-.modal__view--add-note .category__box-option:not(:first-child):active {
+.modal__view--add-note .category__box-option:not(:first-child):active, .modal__view--edit-note .category__box-option:not(:first-child):focus,
+.modal__view--edit-note .category__box-option:not(:first-child):active {
   background-color: #3a3a41;
   outline: 2px solid #ecebe4;
   color: #ecebe4;
 }
 .modal__view--add-note .category__box-option:first-child:focus,
-.modal__view--add-note .category__box-option:first-child:active {
+.modal__view--add-note .category__box-option:first-child:active, .modal__view--edit-note .category__box-option:first-child:focus,
+.modal__view--edit-note .category__box-option:first-child:active {
   background-color: #e08515;
 }
-.modal__view--add-note .category__box-option--add-cat {
+.modal__view--add-note .category__box-option--add-cat, .modal__view--edit-note .category__box-option--add-cat {
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
 }
-.modal__view--add-note .category__box-option:last-child {
+.modal__view--add-note .category__box-option:last-child, .modal__view--edit-note .category__box-option:last-child {
   margin-bottom: 0;
 }
-.modal__view--add-note .form {
+.modal__view--add-note .form, .modal__view--edit-note .form {
   width: 100%;
 }
 .modal__view--search .form__box {
