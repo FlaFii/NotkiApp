@@ -3,7 +3,7 @@ let asideAddBtn,
 	asideFilterBtn,
 	asideDeleteAllBtn,
 	notesAddBtn,
-	addCategoryBtn,
+	addCategoryBtns = [],
 	notesDeleteBtn = [],
 	notesEditBtn = [],
 	modalViewCancelBtns = [],
@@ -35,7 +35,7 @@ const prepareDOMElements = () => {
 		'[data-action="notes-btn-delete"]',
 	);
 	notesEditBtn = document.querySelectorAll('[data-action="notes-btn-edit"]');
-	addCategoryBtn = document.querySelector('[data-action="add-category"]');
+	addCategoryBtns = document.querySelectorAll('[data-action="add-category"]');
 	modal = document.querySelector(".modal");
 	modalViewAddNote = document.querySelector(".modal__view--add-note");
 	modalViewEditNote = document.querySelector(".modal__view--edit-note");
@@ -65,9 +65,9 @@ const prepareDOMEvents = () => {
 	asideDeleteAllBtn.addEventListener("click", () =>
 		openModal(modalViewDeleteAll),
 	);
-	addCategoryBtn.addEventListener("click", () =>
-		openModal(modalViewAddCategory),
-	);
+	addCategoryBtns.forEach((btn) => {
+		btn.addEventListener("click", () => openModal(modalViewAddCategory));
+	});
 	modalCloseBtn.addEventListener("click", closeModal);
 	modalViewCancelBtns.forEach((btn) =>
 		btn.addEventListener("click", closeModal),

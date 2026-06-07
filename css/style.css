@@ -96,7 +96,6 @@ table {
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  align-items: start;
   width: 100%;
   padding: 2em;
   gap: 1.4em;
@@ -298,7 +297,7 @@ table {
   margin: 0.5em 0;
   font-size: 1.6rem;
   font-family: "Alegreya Sans SC", "sans-serif";
-  font-weight: bold;
+  font-weight: normal;
 }
 .modal__view {
   display: none;
@@ -369,6 +368,7 @@ table {
 }
 .modal__view--add-category .category__color-box {
   display: grid;
+  place-items: center;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 1em;
@@ -445,17 +445,53 @@ table {
     padding: 1.6em;
   }
 }
+@media (min-width: 768px) {
+  .modal__window {
+    width: 75%;
+    height: 65%;
+    padding: 2.6em;
+  }
+  .modal__view--add-category .category-color {
+    width: 70px;
+    height: 70px;
+  }
+  .modal__view--add-note .category__box, .modal__view--edit-note .category__box {
+    height: 200px;
+  }
+  .modal__view--add-note .category__box-option, .modal__view--edit-note .category__box-option {
+    width: 85%;
+    padding: 1em;
+  }
+  .modal__view-title {
+    top: 0.8em;
+    font-size: 2rem;
+  }
+  .modal .controls__btn {
+    padding: 0.8em 1.6em;
+  }
+  .modal .controls__btn:first-child {
+    margin-bottom: 1em;
+  }
+}
 body {
   background-color: #fdfff7;
   font-family: "Alegreya Sans", "sans-serif ";
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #3a3a41;
+  padding: 1em;
+}
 .header__logo {
-  padding: 0.4em 0.8em;
   font-family: "Alegreya Sans SC", "sans-serif";
   font-size: 2.8rem;
-  text-align: center;
-  border-bottom: 1px solid #3a3a41;
+}
+.header .form__box {
+  display: none;
+  width: 60%;
 }
 
 .aside {
@@ -480,12 +516,37 @@ body {
   .aside__btns {
     padding: 1.2em;
   }
-  .header__logo {
-    padding: 0.6em 1.2em;
+  .header {
+    padding: 1.2em;
   }
 }
 @media (min-width: 768px) {
   .aside__btns {
     padding: 1.6em;
+  }
+}
+@media (min-width: 992px) {
+  .header {
+    justify-content: space-evenly;
+    padding: 0.8em 1em;
+  }
+  .header .form__box {
+    display: flex;
+    flex-direction: row;
+  }
+  .header .form__box-input {
+    width: 80%;
+    border: 3px solid #ec9832;
+  }
+  .header .form__box-input:focus, .header .form__box-input:active {
+    border-color: #1b1c22;
+    outline: none;
+  }
+  .header .form__box .primary-btn {
+    margin-left: 1em;
+    padding: 0.4em 0.6em;
+  }
+  .aside [data-action=aside-btn-search] {
+    display: none;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -11,12 +11,18 @@ body {
 }
 // HEADER
 .header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid t.$dark-bg;
+	padding: 1em;
 	&__logo {
-		padding: 0.4em 0.8em;
 		font-family: t.$heading-font;
 		font-size: t.$text-2xl;
-		text-align: center;
-		border-bottom: 1px solid t.$dark-bg;
+	}
+	.form__box {
+		display: none;
+		width: 60%;
 	}
 }
 .aside {
@@ -43,15 +49,41 @@ body {
 		}
 	}
 	.header {
-		&__logo {
-			padding: 0.6em 1.2em;
-		}
+		padding: 1.2em;
 	}
 }
 @media (min-width: 768px) {
 	.aside {
 		&__btns {
 			padding: 1.6em;
+		}
+	}
+}
+@media (min-width: 992px) {
+	.header {
+		justify-content: space-evenly;
+		padding: 0.8em 1em;
+		.form__box {
+			display: flex;
+			flex-direction: row;
+			&-input {
+				width: 80%;
+				border: 3px solid t.$accent;
+			}
+			&-input:focus,
+			&-input:active {
+				border-color: t.$font-dark;
+				outline: none;
+			}
+			.primary-btn {
+				margin-left: 1em;
+				padding: 0.4em 0.6em;
+			}
+		}
+	}
+	.aside {
+		[data-action="aside-btn-search"] {
+			display: none;
 		}
 	}
 }
