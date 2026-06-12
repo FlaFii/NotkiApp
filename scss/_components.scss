@@ -2,7 +2,7 @@
 .wrapper {
 	position: relative;
 	display: flex;
-	min-height: calc(100% - 57.4px);
+	min-height: calc(100% - 55px);
 }
 .form__box {
 	display: flex;
@@ -44,6 +44,25 @@
 
 @media (min-width: 576px) {
 	.wrapper {
-		min-height: calc(100% - 68.6px);
+		min-height: calc(100% - 59px);
+	}
+}
+@media (min-width: 992px) {
+	.wrapper {
+		min-height: calc(100% - 84.6px);
+	}
+	.form__box {
+		&-input,
+		&-textarea {
+			padding: 0.8em;
+		}
+		&-textarea {
+			height: 150px;
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.wrapper {
+		min-height: calc(100% - 88.6px);
 	}
 }

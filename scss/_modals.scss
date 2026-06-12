@@ -25,15 +25,15 @@
 		left: 50%;
 		translate: -50% -50%;
 		width: 90%;
-		height: 95%;
-		padding: 1.6em;
+		// height: 95%;
+		padding: 2em 2em 3em 2em;
 		border-radius: t.$radius-md;
 		background-color: t.$light-bg;
 		z-index: 10;
 	}
 	&__view-title {
 		position: absolute;
-		top: 1.2em;
+		top: 1.5em;
 		left: 50%;
 		translate: -50%;
 		margin: 0.5em 0;
@@ -47,6 +47,7 @@
 		align-items: center;
 		justify-content: center;
 		height: 100%;
+		margin-top: 3em;
 	}
 	&__view--add-note,
 	&__view--edit-note {
@@ -186,17 +187,13 @@
 	.modal {
 		&__window {
 			width: 80%;
-			height: 90%;
-			padding: 1.6em;
 		}
 	}
 }
 @media (min-width: 768px) {
 	.modal {
 		&__window {
-			width: 75%;
-			height: 65%;
-			padding: 2.6em;
+			width: 70%;
 		}
 		&__view--add-category {
 			.category-color {
@@ -217,7 +214,7 @@
 			}
 		}
 		&__view-title {
-			top: 0.8em;
+			top: 1em;
 			font-size: t.$text-lg;
 		}
 		.controls {
@@ -226,6 +223,46 @@
 			}
 			&__btn:first-child {
 				margin-bottom: 1em;
+			}
+		}
+	}
+}
+@media (min-width: 992px) {
+	.modal {
+		&__window {
+			width: 70%;
+			padding: 3em;
+		}
+		&__view-title {
+			top: 1.5em;
+		}
+		.controls {
+			&__btn {
+				padding: 1em;
+			}
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.modal {
+		&__window {
+			width: 65%;
+		}
+	}
+}
+@media (min-width: 1400px) {
+	.modal {
+		&__window {
+			width: 50%;
+			max-width: 800px;
+			padding: 5em;
+		}
+		&__view-title {
+			top: 2.5em;
+		}
+		.controls {
+			&__btn {
+				padding: 1.1em;
 			}
 		}
 	}
