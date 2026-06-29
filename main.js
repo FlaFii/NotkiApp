@@ -17,10 +17,20 @@ let asideAddBtn,
 	modalViewEditNote,
 	modalOverlay,
 	modalCloseBtn,
-	moalViews = [];
+	modalViews = [],
+	// nowe
+	addNoteTitleInput,
+	addNoteContentInput,
+	addCategoryTitleInput,
+	addCategoryColors = [],
+	notesArray = [],
+	categoriesArray = [];
 
 const main = () => {
 	prepareDOMElements();
+	// nowe
+	loadCategoriesFromLocalStorage();
+	loadNotesFromLocalStorage();
 	prepareDOMEvents();
 };
 const prepareDOMElements = () => {
