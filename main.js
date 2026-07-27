@@ -18,19 +18,20 @@ let asideAddBtn,
 	modalOverlay,
 	modalCloseBtn,
 	modalViews = [],
-	// nowe
-	addNoteTitleInput,
-	addNoteContentInput,
 	addCategoryTitleInput,
-	addCategoryColors = [],
-	notesArray = [],
-	categoriesArray = [];
+	addCategorySubmitBtn;
+addCategoryColorBtns = [];
+// nowe
+// addNoteTitleInput,
+// addNoteContentInput,
+// notesArray = [],
+// categoriesArray = [];
 
 const main = () => {
 	prepareDOMElements();
 	// nowe
-	loadCategoriesFromLocalStorage();
-	loadNotesFromLocalStorage();
+	// loadCategoriesFromLocalStorage();
+	// loadNotesFromLocalStorage();
 	prepareDOMEvents();
 };
 const prepareDOMElements = () => {
@@ -60,6 +61,12 @@ const prepareDOMElements = () => {
 	);
 	modalOverlay = document.querySelector(".modal__overlay");
 	modalViews = modal.querySelectorAll(".modal__view");
+	addCategoryTitleInput = modalViewAddCategory.querySelector("#category-name");
+	addCategorySubmitBtn = modalViewAddCategory.querySelector(
+		'button[type="submit"]',
+	);
+	addCategoryColorBtns =
+		modalViewAddCategory.querySelectorAll(".category-color");
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
@@ -84,6 +91,7 @@ const prepareDOMEvents = () => {
 	);
 	modalOverlay.addEventListener("click", closeModal);
 	window.addEventListener("keydown", handleEscapeKey);
+	addCategorySubmitBtn.addEventListener("click", addCategoryHandle);
 };
 const openModal = (modalView) => {
 	closeModal();
@@ -100,5 +108,9 @@ const closeModal = () => {
 	modalViews.forEach((view) => {
 		view.classList.remove("modal__view--active");
 	});
+};
+const addCategoryHandle = () => {
+	console.log(addCategoryTitleInput.value);
+	console.log(addCategoryColorBtns);
 };
 main();
