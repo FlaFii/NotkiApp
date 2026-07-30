@@ -18,9 +18,12 @@ let asideAddBtn,
 	modalOverlay,
 	modalCloseBtn,
 	modalViews = [],
+	// formularz do add category
+	addCategoryform,
 	addCategoryTitleInput,
-	addCategorySubmitBtn;
-addCategoryColorBtns = [];
+	addCategorySubmitBtn,
+	addCategoryColorBtns = [],
+	selectedCategoryColor = "";
 // nowe
 // addNoteTitleInput,
 // addNoteContentInput,
@@ -67,6 +70,7 @@ const prepareDOMElements = () => {
 	);
 	addCategoryColorBtns =
 		modalViewAddCategory.querySelectorAll(".category-color");
+	addCategoryform = modalViewAddCategory.querySelector(".form--add-category");
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
@@ -91,7 +95,10 @@ const prepareDOMEvents = () => {
 	);
 	modalOverlay.addEventListener("click", closeModal);
 	window.addEventListener("keydown", handleEscapeKey);
-	addCategorySubmitBtn.addEventListener("click", addCategoryHandle);
+	addCategoryform.addEventListener("submit", addCategoryHandle);
+	addCategoryColorBtns.forEach((btn) =>
+		btn.addEventListener("click", addCategoryColorsHandle),
+	);
 };
 const openModal = (modalView) => {
 	closeModal();
@@ -109,8 +116,17 @@ const closeModal = () => {
 		view.classList.remove("modal__view--active");
 	});
 };
-const addCategoryHandle = () => {
+const addCategoryHandle = (e) => {
+	e.preventDefault();
+
 	console.log(addCategoryTitleInput.value);
-	console.log(addCategoryColorBtns);
+};
+const addCategoryColorsHandle = (e) => {
+	addCategoryColorBtns.forEach((btn) =>
+		btn.classList.remove("category-color--active"),
+	);
+	e.currentTarget.classList.add("category-color--active");
+	selectedCategoryColor = e.currentTarget.dataset.color;
+	console.log(selectedCategoryColor);
 };
 main();

@@ -160,6 +160,9 @@
 				background-color: t.$category-12;
 			}
 		}
+		.category-color--active {
+			border: 4px outset t.$accent;
+		}
 	}
 	&__view--active {
 		display: flex;

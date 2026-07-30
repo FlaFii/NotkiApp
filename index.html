@@ -181,32 +181,46 @@
 
             <div class="modal__view modal__view--add-category ">
                 <h2 class="modal__view-title">Stwórz kategorię</h2>
-                <div class="form__box">
-                    <label class="form__box-title" for="category-name">Wpisz nazwę :</label>
-                    <input class="form__box-input" type="text" id="category-name">
-                </div>
-                <div class="form__box">
-                    <label class="form__box-title">Wybierz kolor :</label>
-                    <div class="category__color-box">
-                        <button type="button" class="category-color category-color--one"></button>
-                        <button type="button" class="category-color category-color--two"></button>
-                        <button type="button" class="category-color category-color--three"></button>
-                        <button type="button" class="category-color category-color--four"></button>
-                        <button type="button" class="category-color category-color--five"></button>
-                        <button type="button" class="category-color category-color--six"></button>
-                        <button type="button" class="category-color category-color--seven"></button>
-                        <button type="button" class="category-color category-color--eight"></button>
-                        <button type="button" class="category-color category-color--nine"></button>
-                        <button type="button" class="category-color category-color--ten"></button>
-                        <button type="button" class="category-color category-color--eleven"></button>
-                        <button type="button" class="category-color category-color--twelve"></button>
+                <form class="form form--add-category">
+                    <div class="form__box">
+                        <label class="form__box-title" for="category-name">Wpisz nazwę :</label>
+                        <input class="form__box-input" type="text" id="category-name">
                     </div>
-                </div>
-                <div class="controls">
-                    <button type="submit" class="controls__btn primary-btn">Dodaj kategorię</button>
-                    <button data-action="modal-view-cancel-btn" type="button"
-                        class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
-                </div>
+                    <div class="form__box">
+                        <label class="form__box-title">Wybierz kolor :</label>
+                        <div class="category__color-box">
+                            <button type="button" data-color="category-1"
+                                class="category-color category-color--one"></button>
+                            <button type="button" data-color="category-2"
+                                class="category-color category-color--two"></button>
+                            <button type="button" data-color="category-3"
+                                class="category-color category-color--three"></button>
+                            <button type="button" data-color="category-4"
+                                class="category-color category-color--four"></button>
+                            <button type="button" data-color="category-5"
+                                class="category-color category-color--five"></button>
+                            <button type="button" data-color="category-6"
+                                class="category-color category-color--six"></button>
+                            <button type="button" data-color="category-7"
+                                class="category-color category-color--seven"></button>
+                            <button type="button" data-color="category-8"
+                                class="category-color category-color--eight"></button>
+                            <button type="button" data-color="category-9"
+                                class="category-color category-color--nine"></button>
+                            <button type="button" data-color="category-10"
+                                class="category-color category-color--ten"></button>
+                            <button type="button" data-color="category-11"
+                                class="category-color category-color--eleven"></button>
+                            <button type="button" data-color="category-12"
+                                class="category-color category-color--twelve"></button>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button type="submit" class="controls__btn primary-btn">Dodaj kategorię</button>
+                        <button data-action="modal-view-cancel-btn" type="button"
+                            class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

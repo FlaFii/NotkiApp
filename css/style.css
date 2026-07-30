@@ -474,6 +474,9 @@ table {
 .modal__view--add-category .category-color--twelve {
   background-color: #6cb5de;
 }
+.modal__view--add-category .category-color--active {
+  border: 4px outset #ec9832;
+}
 .modal__view--active {
   display: flex;
 }
