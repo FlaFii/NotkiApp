@@ -23,18 +23,21 @@ let asideAddBtn,
 	addCategoryTitleInput,
 	addCategorySubmitBtn,
 	addCategoryColorBtns = [],
-	selectedCategoryColor = "";
+	selectedCategoryColor = "",
+	categoriesArray = [],
+	categoryBox;
 // nowe
 // addNoteTitleInput,
 // addNoteContentInput,
 // notesArray = [],
-// categoriesArray = [];
 
 const main = () => {
 	prepareDOMElements();
 	// nowe
 	// loadCategoriesFromLocalStorage();
 	// loadNotesFromLocalStorage();
+	renderCategories();
+
 	prepareDOMEvents();
 };
 const prepareDOMElements = () => {
@@ -71,6 +74,7 @@ const prepareDOMElements = () => {
 	addCategoryColorBtns =
 		modalViewAddCategory.querySelectorAll(".category-color");
 	addCategoryform = modalViewAddCategory.querySelector(".form--add-category");
+	categoryBox = document.querySelectorAll(".category__box");
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
@@ -116,17 +120,58 @@ const closeModal = () => {
 		view.classList.remove("modal__view--active");
 	});
 };
-const addCategoryHandle = (e) => {
-	e.preventDefault();
-
-	console.log(addCategoryTitleInput.value);
-};
 const addCategoryColorsHandle = (e) => {
 	addCategoryColorBtns.forEach((btn) =>
 		btn.classList.remove("category-color--active"),
 	);
 	e.currentTarget.classList.add("category-color--active");
 	selectedCategoryColor = e.currentTarget.dataset.color;
-	console.log(selectedCategoryColor);
+};
+const renderCategories = () => {
+	// tutaj musze naprawic to ze wyswietla sie przycisk dodaj kategorie tylko raz oraz to 
+	// ze nie dziala listener na przycisk dodaj kategore , moze skoro ten przysik ma byc zawsze na gorze to pp zrobic go w html?SS
+	categoryBox.forEach((box) => {
+		box.innerHTML = "";
+	});
+	categoriesArray.forEach((category) => {
+		const catBtn = document.createElement("button");
+		catBtn.type = "button";
+		catBtn.classList.add("category__box-option");
+		catBtn.textContent = category.name;
+		categoryBox.forEach((box) => {
+			box.append(catBtn);
+		});
+	});
+	const addCatBtn = document.createElement("button");
+	addCatBtn.type = "button";
+	addCatBtn.dataset.action = "add-category";
+	addCatBtn.classList.add(
+		"category__box-option",
+		"category__box-option--add-cat",
+		"primary-btn",
+	);
+
+	addCatBtn.innerHTML = `
+    <img src="./icons/plus.svg" alt="">
+    Dodaj kategorię`;
+
+	categoryBox.forEach((box) => {
+		box.append(addCatBtn);
+	});
+};
+const addCategoryHandle = (e) => {
+	e.preventDefault();
+	if (addCategoryTitleInput.value === "" || selectedCategoryColor === "") {
+		console.log("uzupłnij dane =");
+	} else {
+		const category = {
+			id: Date.now(),
+			name: addCategoryTitleInput.value,
+			color: selectedCategoryColor,
+		};
+		categoriesArray.push(category);
+		console.log(categoriesArray);
+		renderCategories();
+	}
 };
 main();
