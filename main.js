@@ -3,7 +3,7 @@ let asideAddBtn,
 	asideFilterBtn,
 	asideDeleteAllBtn,
 	notesAddBtn,
-	addCategoryBtns = [],
+	// addCategoryBtns = [],
 	notesDeleteBtn = [],
 	notesEditBtn = [],
 	modalViewCancelBtns = [],
@@ -25,7 +25,7 @@ let asideAddBtn,
 	addCategoryColorBtns = [],
 	selectedCategoryColor = "",
 	categoriesArray = [],
-	categoryBox;
+	categoryBoxes = [];
 // nowe
 // addNoteTitleInput,
 // addNoteContentInput,
@@ -52,7 +52,7 @@ const prepareDOMElements = () => {
 		'[data-action="notes-btn-delete"]',
 	);
 	notesEditBtn = document.querySelectorAll('[data-action="notes-btn-edit"]');
-	addCategoryBtns = document.querySelectorAll('[data-action="add-category"]');
+	// addCategoryBtns = document.querySelectorAll('[data-action="add-category"]');
 	modal = document.querySelector(".modal");
 	modalViewAddNote = document.querySelector(".modal__view--add-note");
 	modalViewEditNote = document.querySelector(".modal__view--edit-note");
@@ -74,7 +74,7 @@ const prepareDOMElements = () => {
 	addCategoryColorBtns =
 		modalViewAddCategory.querySelectorAll(".category-color");
 	addCategoryform = modalViewAddCategory.querySelector(".form--add-category");
-	categoryBox = document.querySelectorAll(".category__box");
+	categoryBoxes = document.querySelectorAll(".category__box");
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
@@ -90,9 +90,9 @@ const prepareDOMEvents = () => {
 	asideDeleteAllBtn.addEventListener("click", () =>
 		openModal(modalViewDeleteAll),
 	);
-	addCategoryBtns.forEach((btn) => {
-		btn.addEventListener("click", () => openModal(modalViewAddCategory));
-	});
+	// addCategoryBtns.forEach((btn) => {
+	// 	btn.addEventListener("click", () => openModal(modalViewAddCategory));
+	// });
 	modalCloseBtn.addEventListener("click", closeModal);
 	modalViewCancelBtns.forEach((btn) =>
 		btn.addEventListener("click", closeModal),
@@ -102,6 +102,9 @@ const prepareDOMEvents = () => {
 	addCategoryform.addEventListener("submit", addCategoryHandle);
 	addCategoryColorBtns.forEach((btn) =>
 		btn.addEventListener("click", addCategoryColorsHandle),
+	);
+	categoryBoxes.forEach((box) =>
+		box.addEventListener("click", handleCategoryBoxClick),
 	);
 };
 const openModal = (modalView) => {
@@ -128,9 +131,7 @@ const addCategoryColorsHandle = (e) => {
 	selectedCategoryColor = e.currentTarget.dataset.color;
 };
 const renderCategories = () => {
-	// tutaj musze naprawic to ze wyswietla sie przycisk dodaj kategorie tylko raz oraz to 
-	// ze nie dziala listener na przycisk dodaj kategore , moze skoro ten przysik ma byc zawsze na gorze to pp zrobic go w html?SS
-	categoryBox.forEach((box) => {
+	categoryBoxes.forEach((box) => {
 		box.innerHTML = "";
 	});
 	categoriesArray.forEach((category) => {
@@ -138,24 +139,22 @@ const renderCategories = () => {
 		catBtn.type = "button";
 		catBtn.classList.add("category__box-option");
 		catBtn.textContent = category.name;
-		categoryBox.forEach((box) => {
+		categoryBoxes.forEach((box) => {
 			box.append(catBtn);
 		});
 	});
-	const addCatBtn = document.createElement("button");
-	addCatBtn.type = "button";
-	addCatBtn.dataset.action = "add-category";
-	addCatBtn.classList.add(
-		"category__box-option",
-		"category__box-option--add-cat",
-		"primary-btn",
-	);
-
-	addCatBtn.innerHTML = `
-    <img src="./icons/plus.svg" alt="">
-    Dodaj kategorię`;
-
-	categoryBox.forEach((box) => {
+	categoryBoxes.forEach((box) => {
+		const addCatBtn = document.createElement("button");
+		addCatBtn.type = "button";
+		addCatBtn.dataset.action = "add-category";
+		addCatBtn.classList.add(
+			"category__box-option",
+			"category__box-option--add-cat",
+			"primary-btn",
+		);
+		addCatBtn.innerHTML = `
+    		<img src="./icons/plus.svg" alt="">
+    		Dodaj kategorię`;
 		box.append(addCatBtn);
 	});
 };
@@ -174,4 +173,13 @@ const addCategoryHandle = (e) => {
 		renderCategories();
 	}
 };
+const handleCategoryBoxClick = (e) => {
+	if (e.target.closest('[data-action="add-category"]')) {
+		openModal(modalViewAddCategory);
+	}
+};
 main();
+
+// modal tworzenia notatki jest za duzy na malych ekranach latopach
+// - dodac animacje do wybierania koloru w tworzeniu kategorii
+// - zastanowic sie czy przycisk dodawania kategorii powinien byc na samej gorze listy czy na dole i czy go dodac na stale w html czy zostawic jak jest 
