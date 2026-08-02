@@ -36,8 +36,8 @@ const main = () => {
 	// nowe
 	// loadCategoriesFromLocalStorage();
 	// loadNotesFromLocalStorage();
+	loadCategoriesFromLocalStorage();
 	renderCategories();
-
 	prepareDOMEvents();
 };
 const prepareDOMElements = () => {
@@ -169,7 +169,7 @@ const addCategoryHandle = (e) => {
 			color: selectedCategoryColor,
 		};
 		categoriesArray.push(category);
-		console.log(categoriesArray);
+		saveCategoriesToLocalStorage();
 		renderCategories();
 	}
 };
@@ -178,8 +178,21 @@ const handleCategoryBoxClick = (e) => {
 		openModal(modalViewAddCategory);
 	}
 };
+const saveCategoriesToLocalStorage = () => {
+	localStorage.setItem("categories", JSON.stringify(categoriesArray));
+};
+const loadCategoriesFromLocalStorage = () => {
+	const data = localStorage.getItem("categories");
+	if (data === null) {
+		return;
+	} else {
+		categoriesArray = JSON.parse(data);
+		console.log(categoriesArray);
+		renderCategories();
+	}
+};
 main();
 
 // modal tworzenia notatki jest za duzy na malych ekranach latopach
 // - dodac animacje do wybierania koloru w tworzeniu kategorii
-// - zastanowic sie czy przycisk dodawania kategorii powinien byc na samej gorze listy czy na dole i czy go dodac na stale w html czy zostawic jak jest 
+// - zapisywanie kategorii w localstorage juz dziala teraz trzeba dodac funkcje ktora będzie tworzyla fizyczne przyciski do tykch kategorii
