@@ -33,9 +33,6 @@ let asideAddBtn,
 
 const main = () => {
 	prepareDOMElements();
-	// nowe
-	// loadCategoriesFromLocalStorage();
-	// loadNotesFromLocalStorage();
 	loadCategoriesFromLocalStorage();
 	renderCategories();
 	prepareDOMEvents();
@@ -133,17 +130,14 @@ const addCategoryColorsHandle = (e) => {
 const renderCategories = () => {
 	categoryBoxes.forEach((box) => {
 		box.innerHTML = "";
-	});
-	categoriesArray.forEach((category) => {
-		const catBtn = document.createElement("button");
-		catBtn.type = "button";
-		catBtn.classList.add("category__box-option");
-		catBtn.textContent = category.name;
-		categoryBoxes.forEach((box) => {
+		categoriesArray.forEach((category) => {
+			const catBtn = document.createElement("button");
+			catBtn.type = "button";
+			catBtn.classList.add("category__box-option", category.color);
+			catBtn.textContent = category.name;
+
 			box.append(catBtn);
 		});
-	});
-	categoryBoxes.forEach((box) => {
 		const addCatBtn = document.createElement("button");
 		addCatBtn.type = "button";
 		addCatBtn.dataset.action = "add-category";
@@ -158,10 +152,18 @@ const renderCategories = () => {
 		box.append(addCatBtn);
 	});
 };
+const clearAddCategoryForm = () => {
+	addCategoryform.reset();
+	addCategoryColorBtns.forEach((btn) => {
+		btn.classList.remove("category-color--active");
+		selectedCategoryColor = "";
+	});
+};
 const addCategoryHandle = (e) => {
 	e.preventDefault();
 	if (addCategoryTitleInput.value === "" || selectedCategoryColor === "") {
 		console.log("uzupłnij dane =");
+		// tutaj trzeb bedzie dodać jeszcze jakis paragraf ktory bedzie wyswietlal błąd
 	} else {
 		const category = {
 			id: Date.now(),
@@ -171,6 +173,14 @@ const addCategoryHandle = (e) => {
 		categoriesArray.push(category);
 		saveCategoriesToLocalStorage();
 		renderCategories();
+		clearAddCategoryForm();
+		closeModal();
+		// if (modalViewAddNote.matches(".modal__view--active")) {
+		// 	openModal(modalViewAddNote);
+		// } else if (modalViewEditNote.matches(".modal__view--active")) {
+		// 	openModal(modalEditNote);
+		// }
+		// tutaj trzeb zrobic jakas zmienna ktora zapisuje z jakiego modala zostalo klikniete add category zeby pozniej otworzyc odpowiednio albo add note albo edit note
 	}
 };
 const handleCategoryBoxClick = (e) => {
@@ -183,13 +193,8 @@ const saveCategoriesToLocalStorage = () => {
 };
 const loadCategoriesFromLocalStorage = () => {
 	const data = localStorage.getItem("categories");
-	if (data === null) {
-		return;
-	} else {
-		categoriesArray = JSON.parse(data);
-		console.log(categoriesArray);
-		renderCategories();
-	}
+	if (!data) return;
+	categoriesArray = JSON.parse(data);
 };
 main();
 
