@@ -105,6 +105,8 @@ const prepareDOMEvents = () => {
 	categoryBoxes.forEach((box) =>
 		box.addEventListener("click", handleCategoryBoxClick),
 	);
+	// nowe
+	addNoteForm.addEventListener("submit", addNoteHandle);
 };
 const openModal = (modalView) => {
 	closeModal();
@@ -137,6 +139,7 @@ const renderCategories = () => {
 			catBtn.type = "button";
 			catBtn.classList.add("category__box-option", category.color);
 			catBtn.textContent = category.name;
+			catBtn.dataset.categoryId = category.id;
 
 			box.append(catBtn);
 		});
@@ -183,6 +186,12 @@ const handleCategoryBoxClick = (e) => {
 	if (e.target.closest('[data-action="add-category"]')) {
 		returnModalView = e.currentTarget.closest(".modal__view");
 		openModal(modalViewAddCategory);
+		return;
+	}
+	const categoryBtn = e.target.closest("[data-category-id]");
+	if (categoryBtn) {
+		selectedCategoryId = categoryBtn.dataset.categoryId;
+		// console.log(selectedCategoryId);
 	}
 };
 const saveCategoriesToLocalStorage = () => {
@@ -193,8 +202,28 @@ const loadCategoriesFromLocalStorage = () => {
 	if (!data) return;
 	categoriesArray = JSON.parse(data);
 };
+const addNoteHandle = (e) => {
+	e.preventDefault();
+	if (
+		addNoteTitleInput.value === "" ||
+		addNoteContentInput.value === "" ||
+		selectedCategoryId === ""
+	) {
+		console.log("uzupelnij wszystkie dane");
+		return;
+	}
+	const note = {
+		id: Date.now(),
+		title: addNoteTitleInput.value,
+		content: addNoteContentInput.value,
+		categoryId: Number(selectedCategoryId),
+		createdAt: new Date().toISOString(),
+	};
+	notesArray.push(note);
+	console.log(notesArray);
+};
 main();
 
 // modal tworzenia notatki jest za duzy na malych ekranach latopach
 // - dodac animacje do wybierania koloru w tworzeniu kategorii
-// - zapisywanie kategorii w localstorage juz dziala teraz trzeba dodac funkcje ktora będzie tworzyla fizyczne przyciski do tykch kategorii
+// - skonczyłem na stworzeniu obiektu note i prowizorycznej walidacji
