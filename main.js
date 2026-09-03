@@ -3,7 +3,6 @@ let asideAddBtn,
 	asideFilterBtn,
 	asideDeleteAllBtn,
 	notesAddBtn,
-	// addCategoryBtns = [],
 	notesDeleteBtn = [],
 	notesEditBtn = [],
 	modalViewCancelBtns = [],
@@ -25,11 +24,14 @@ let asideAddBtn,
 	addCategoryColorBtns = [],
 	selectedCategoryColor = "",
 	categoriesArray = [],
-	categoryBoxes = [];
-// nowe
-// addNoteTitleInput,
-// addNoteContentInput,
-// notesArray = [],
+	categoryBoxes = [],
+	returnModalView = null,
+	// nowe
+	notesArray = [],
+	addNoteForm,
+	addNoteTitleInput,
+	addNoteContentInput,
+	selectedCategoryId;
 
 const main = () => {
 	prepareDOMElements();
@@ -49,7 +51,6 @@ const prepareDOMElements = () => {
 		'[data-action="notes-btn-delete"]',
 	);
 	notesEditBtn = document.querySelectorAll('[data-action="notes-btn-edit"]');
-	// addCategoryBtns = document.querySelectorAll('[data-action="add-category"]');
 	modal = document.querySelector(".modal");
 	modalViewAddNote = document.querySelector(".modal__view--add-note");
 	modalViewEditNote = document.querySelector(".modal__view--edit-note");
@@ -72,6 +73,10 @@ const prepareDOMElements = () => {
 		modalViewAddCategory.querySelectorAll(".category-color");
 	addCategoryform = modalViewAddCategory.querySelector(".form--add-category");
 	categoryBoxes = document.querySelectorAll(".category__box");
+	// nowe
+	addNoteForm = modalViewAddNote.querySelector(".form");
+	addNoteTitleInput = addNoteForm.querySelector("#title");
+	addNoteContentInput = addNoteForm.querySelector("#content");
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
@@ -87,9 +92,6 @@ const prepareDOMEvents = () => {
 	asideDeleteAllBtn.addEventListener("click", () =>
 		openModal(modalViewDeleteAll),
 	);
-	// addCategoryBtns.forEach((btn) => {
-	// 	btn.addEventListener("click", () => openModal(modalViewAddCategory));
-	// });
 	modalCloseBtn.addEventListener("click", closeModal);
 	modalViewCancelBtns.forEach((btn) =>
 		btn.addEventListener("click", closeModal),
@@ -174,17 +176,12 @@ const addCategoryHandle = (e) => {
 		saveCategoriesToLocalStorage();
 		renderCategories();
 		clearAddCategoryForm();
-		closeModal();
-		// if (modalViewAddNote.matches(".modal__view--active")) {
-		// 	openModal(modalViewAddNote);
-		// } else if (modalViewEditNote.matches(".modal__view--active")) {
-		// 	openModal(modalEditNote);
-		// }
-		// tutaj trzeb zrobic jakas zmienna ktora zapisuje z jakiego modala zostalo klikniete add category zeby pozniej otworzyc odpowiednio albo add note albo edit note
+		openModal(returnModalView);
 	}
 };
 const handleCategoryBoxClick = (e) => {
 	if (e.target.closest('[data-action="add-category"]')) {
+		returnModalView = e.currentTarget.closest(".modal__view");
 		openModal(modalViewAddCategory);
 	}
 };
