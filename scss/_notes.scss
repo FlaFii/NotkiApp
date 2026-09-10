@@ -15,8 +15,7 @@
 		top: calc(50vh - 100%);
 		left: 50%;
 		translate: -50% -50%;
-		display: flex;
-		// display: none;
+		display: none;
 		justify-content: center;
 		align-items: center;
 		width: 70%;
@@ -26,14 +25,15 @@
 		background: none;
 		border: 3px solid t.$accent;
 		border-radius: t.$radius-sm;
+		&--active {
+			display: flex;
+		}
 	}
 	&__add-btn-icon {
 		margin-right: 0.4em;
 	}
 	&__item {
-		// height: 200px;
 		padding: 1.4em;
-		background-color: t.$category-9;
 		border-radius: t.$radius-md;
 		&-title {
 			position: relative;
@@ -60,6 +60,7 @@
 		&-text {
 			font-family: t.$main-font;
 			font-size: t.$text-md;
+			overflow-wrap: anywhere;
 		}
 		&-bottom {
 			display: flex;
@@ -76,6 +77,44 @@
 		}
 		&-btn--delete {
 			margin-right: 1em;
+		}
+	}
+	&__item.category-color {
+		&--one {
+			background-color: t.$category-1;
+		}
+		&--two {
+			background-color: t.$category-2;
+		}
+		&--three {
+			background-color: t.$category-3;
+		}
+		&--four {
+			background-color: t.$category-4;
+		}
+		&--five {
+			background-color: t.$category-5;
+		}
+		&--six {
+			background-color: t.$category-6;
+		}
+		&--seven {
+			background-color: t.$category-7;
+		}
+		&--eight {
+			background-color: t.$category-8;
+		}
+		&--nine {
+			background-color: t.$category-9;
+		}
+		&--ten {
+			background-color: t.$category-10;
+		}
+		&--eleven {
+			background-color: t.$category-11;
+		}
+		&--twelve {
+			background-color: t.$category-12;
 		}
 	}
 }
@@ -124,7 +163,7 @@
 	.notes {
 		&__add-btn {
 			width: 30%;
-			padding: .9em 1.8em;
+			padding: 0.9em 1.8em;
 		}
 	}
 }

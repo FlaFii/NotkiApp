@@ -124,7 +124,7 @@ table {
   top: calc(50vh - 100%);
   left: 50%;
   translate: -50% -50%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 70%;
@@ -135,12 +135,14 @@ table {
   border: 3px solid #ec9832;
   border-radius: 10px;
 }
+.notes__add-btn--active {
+  display: flex;
+}
 .notes__add-btn-icon {
   margin-right: 0.4em;
 }
 .notes__item {
   padding: 1.4em;
-  background-color: #c9b1fb;
   border-radius: 12px;
 }
 .notes__item-title {
@@ -162,6 +164,7 @@ table {
 .notes__item-text {
   font-family: "Alegreya Sans", "sans-serif ";
   font-size: 1.6rem;
+  overflow-wrap: anywhere;
 }
 .notes__item-bottom {
   display: flex;
@@ -178,6 +181,42 @@ table {
 }
 .notes__item-btn--delete {
   margin-right: 1em;
+}
+.notes__item.category-color--one {
+  background-color: #9ece9a;
+}
+.notes__item.category-color--two {
+  background-color: #e4ed8f;
+}
+.notes__item.category-color--three {
+  background-color: #e9e67e;
+}
+.notes__item.category-color--four {
+  background-color: #f9d362;
+}
+.notes__item.category-color--five {
+  background-color: #fec871;
+}
+.notes__item.category-color--six {
+  background-color: #fdaa86;
+}
+.notes__item.category-color--seven {
+  background-color: #ec8398;
+}
+.notes__item.category-color--eight {
+  background-color: #efabac;
+}
+.notes__item.category-color--nine {
+  background-color: #c9b1fb;
+}
+.notes__item.category-color--ten {
+  background-color: #47e0ff;
+}
+.notes__item.category-color--eleven {
+  background-color: #75a3d1;
+}
+.notes__item.category-color--twelve {
+  background-color: #6cb5de;
 }
 
 @media (min-width: 576px) {
@@ -393,17 +432,12 @@ table {
   font-weight: bold;
   border-radius: 12px;
 }
-.modal__view--add-note .category__box-option:not(:first-child):focus,
-.modal__view--add-note .category__box-option:not(:first-child):active, .modal__view--edit-note .category__box-option:not(:first-child):focus,
-.modal__view--edit-note .category__box-option:not(:first-child):active {
+.modal__view--add-note .category__box-option:focus,
+.modal__view--add-note .category__box-option:active, .modal__view--edit-note .category__box-option:focus,
+.modal__view--edit-note .category__box-option:active {
   background-color: #3a3a41;
   outline: 2px solid #ecebe4;
   color: #ecebe4;
-}
-.modal__view--add-note .category__box-option:first-child:focus,
-.modal__view--add-note .category__box-option:first-child:active, .modal__view--edit-note .category__box-option:first-child:focus,
-.modal__view--edit-note .category__box-option:first-child:active {
-  background-color: #e08515;
 }
 .modal__view--add-note .category__box-option--add-cat, .modal__view--edit-note .category__box-option--add-cat {
   display: flex;

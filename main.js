@@ -4,7 +4,7 @@ let asideAddBtn,
 	asideDeleteAllBtn,
 	notesAddBtn,
 	notesDeleteBtn = [],
-	notesEditBtn = [],
+	// notesEditBtn = [],
 	modalViewCancelBtns = [],
 	modal,
 	modalViewAddNote,
@@ -31,12 +31,19 @@ let asideAddBtn,
 	addNoteForm,
 	addNoteTitleInput,
 	addNoteContentInput,
-	selectedCategoryId;
+	selectedCategoryId,
+	notesBox,
+	editNoteTitleInput,
+	editNoteContentInput,
+	editNoteForm,
+	deleteNoteForm;
 
 const main = () => {
 	prepareDOMElements();
 	loadCategoriesFromLocalStorage();
+	loadNotesFromLocalStorage();
 	renderCategories();
+	renderNotes();
 	prepareDOMEvents();
 };
 const prepareDOMElements = () => {
@@ -46,11 +53,11 @@ const prepareDOMElements = () => {
 	asideDeleteAllBtn = document.querySelector(
 		'[data-action="aside-btn-delete-all"]',
 	);
-	notesAddBtn = document.querySelector('[data-action="notes-btn-add"]');
+	// notesAddBtn = document.querySelector('[data-action="notes-btn-add"]');
 	notesDeleteBtn = document.querySelectorAll(
 		'[data-action="notes-btn-delete"]',
 	);
-	notesEditBtn = document.querySelectorAll('[data-action="notes-btn-edit"]');
+	// notesEditBtn = document.querySelectorAll('[data-action="notes-btn-edit"]');
 	modal = document.querySelector(".modal");
 	modalViewAddNote = document.querySelector(".modal__view--add-note");
 	modalViewEditNote = document.querySelector(".modal__view--edit-note");
@@ -77,16 +84,21 @@ const prepareDOMElements = () => {
 	addNoteForm = modalViewAddNote.querySelector(".form");
 	addNoteTitleInput = addNoteForm.querySelector("#title");
 	addNoteContentInput = addNoteForm.querySelector("#content");
+	notesBox = document.querySelector("main.notes");
+	editNoteTitleInput = modalViewEditNote.querySelector("#title");
+	editNoteContentInput = modalViewEditNote.querySelector("#content");
+	editNoteForm = modalViewEditNote.querySelector(".form");
+	deleteNoteForm = modalViewDeleteNote.querySelector(".form");
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
-	notesAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
+	notesBox.addEventListener("click", notesAddBtnHandle);
 	notesDeleteBtn.forEach((btn) =>
 		btn.addEventListener("click", () => openModal(modalViewDeleteNote)),
 	);
-	notesEditBtn.forEach((btn) =>
-		btn.addEventListener("click", () => openModal(modalViewEditNote)),
-	);
+	// notesEditBtn.forEach((btn) =>
+	// 	btn.addEventListener("click", () => openModal(modalViewEditNote)),
+	// );
 	asideSearchBtn.addEventListener("click", () => openModal(modalViewSearch));
 	asideFilterBtn.addEventListener("click", () => openModal(modalViewFilter));
 	asideDeleteAllBtn.addEventListener("click", () =>
@@ -107,6 +119,8 @@ const prepareDOMEvents = () => {
 	);
 	// nowe
 	addNoteForm.addEventListener("submit", addNoteHandle);
+	editNoteForm.addEventListener("submit", editNoteHandle);
+	deleteNoteForm.addEventListener("submit", deleteNoteHandle);
 };
 const openModal = (modalView) => {
 	closeModal();
@@ -202,12 +216,13 @@ const loadCategoriesFromLocalStorage = () => {
 	if (!data) return;
 	categoriesArray = JSON.parse(data);
 };
+
 const addNoteHandle = (e) => {
 	e.preventDefault();
 	if (
 		addNoteTitleInput.value === "" ||
 		addNoteContentInput.value === "" ||
-		selectedCategoryId === ""
+		!selectedCategoryId
 	) {
 		console.log("uzupelnij wszystkie dane");
 		return;
@@ -220,10 +235,145 @@ const addNoteHandle = (e) => {
 		createdAt: new Date().toISOString(),
 	};
 	notesArray.push(note);
-	console.log(notesArray);
+	saveNotesToLocalStorage();
+	renderNotes();
+	addNoteTitleInput.value = "";
+	addNoteContentInput.value = "";
+	closeModal();
+};
+
+const renderNotes = () => {
+	notesBox.innerHTML = "";
+	if (notesArray.length === 0) {
+		const notesBtnAdd = document.createElement("button");
+		notesBtnAdd.classList.add("notes__add-btn", "notes__add-btn--active");
+		notesBtnAdd.dataset.action = "notes-btn-add";
+		notesBtnAdd.title = "Dodaj notatkę";
+		notesBtnAdd.innerHTML =
+			'<img src="./icons/plus.svg" alt="" class="notes__add-btn-icon">Dodaj notatkę';
+		notesBox.append(notesBtnAdd);
+	}
+	notesArray.forEach((note) => {
+		const category = categoriesArray.find(
+			(category) => category.id === note.categoryId,
+		);
+		const date = new Date(note.createdAt);
+		const notesItem = document.createElement("div");
+		notesItem.classList.add("notes__item", category.color);
+		notesItem.addEventListener("click", (e) => {
+			if (e.target.closest('[data-action="notes-btn-edit"]')) {
+				notesEditBtnHandle(note);
+			} else if (e.target.closest('[data-action="notes-btn-delete"]')) {
+				notesDeleteBtnHandle(note);
+			}
+		});
+		notesItem.dataset.noteId = note.id;
+		notesBox.append(notesItem);
+		const notesItemTitle = document.createElement("h2");
+		notesItemTitle.classList.add("notes__item-title");
+		notesItemTitle.innerText = note.title;
+		notesItem.append(notesItemTitle);
+		const notesItemText = document.createElement("p");
+		notesItemText.classList.add("notes__item-text");
+		let previewContent = note.content;
+		if (previewContent.length > 445) {
+			previewContent = previewContent.slice(0, 445) + "...";
+			notesItemText.innerText = previewContent;
+		} else {
+			notesItemText.innerText = previewContent;
+		}
+		notesItem.append(notesItemText);
+		const notesItemBottom = document.createElement("div");
+		notesItemBottom.classList.add("notes__item-bottom");
+		notesItem.append(notesItemBottom);
+		const notesItemDate = document.createElement("p");
+		notesItemDate.classList.add("notes__item-date");
+		notesItemDate.innerText = date.toLocaleDateString();
+		notesItemBottom.append(notesItemDate);
+		const notesItemControls = document.createElement("div");
+		notesItemControls.classList.add("notes__item-controls");
+		notesItemBottom.append(notesItemControls);
+		const notesBtnDelete = document.createElement("button");
+		notesBtnDelete.classList.add(
+			"notes__item-btn",
+			"notes__item-btn--delete",
+			"secondary-btn",
+			"secondary-btn--delete",
+		);
+		notesBtnDelete.dataset.action = "notes-btn-delete";
+		notesBtnDelete.title = "Usuń notatkę";
+		notesBtnDelete.innerHTML = '<img src="./icons/trash.svg" alt="">';
+		notesItemControls.append(notesBtnDelete);
+		const notesBtnEdit = document.createElement("button");
+		notesBtnEdit.classList.add(
+			"notes__item-btn",
+			"notes__item-btn--edit",
+			"secondary-btn",
+		);
+		notesBtnEdit.dataset.action = "notes-btn-edit";
+		notesBtnEdit.title = "Edytuj notatkę";
+		notesBtnEdit.innerHTML = '<img src="./icons/edit.svg" alt="">';
+		notesItemControls.append(notesBtnEdit);
+	});
+};
+const saveNotesToLocalStorage = () => {
+	localStorage.setItem("notes", JSON.stringify(notesArray));
+};
+const loadNotesFromLocalStorage = () => {
+	const data = localStorage.getItem("notes");
+	if (!data) return;
+	notesArray = JSON.parse(data);
+};
+const notesAddBtnHandle = (e) => {
+	if (e.target.closest('[data-action="notes-btn-add"]')) {
+		openModal(modalViewAddNote);
+		return;
+	}
+};
+const notesEditBtnHandle = (note) => {
+	editNoteTitleInput.value = note.title;
+	editNoteContentInput.value = note.content;
+	editNoteForm.dataset.noteId = note.id;
+	openModal(modalViewEditNote);
+	return;
+};
+const editNoteHandle = (e) => {
+	e.preventDefault();
+	if (
+		editNoteTitleInput.value === "" ||
+		editNoteContentInput.value === "" ||
+		!selectedCategoryId
+	) {
+		console.log("uzupelnij wszystkie dane");
+		return;
+	}
+	const noteId = Number(editNoteForm.dataset.noteId);
+	const note = notesArray.find((note) => note.id === noteId);
+	note.title = editNoteTitleInput.value;
+	note.content = editNoteContentInput.value;
+	note.categoryId = Number(selectedCategoryId);
+	saveNotesToLocalStorage();
+	renderNotes();
+	addNoteTitleInput.value = "";
+	addNoteContentInput.value = "";
+	closeModal();
+};
+const notesDeleteBtnHandle = (note) => {
+	deleteNoteForm.dataset.noteId = note.id;
+	openModal(modalViewDeleteNote);
+};
+const deleteNoteHandle = () => {
+	const noteId = Number(deleteNoteForm.dataset.noteId);
+	const noteIndex = notesArray.findIndex((note) => note.id === noteId);
+	if (noteIndex !== -1) {
+		notesArray.splice(noteIndex, 1);
+	}
+	saveNotesToLocalStorage();
+	renderNotes();
+	closeModal();
 };
 main();
 
-// modal tworzenia notatki jest za duzy na malych ekranach latopach
+// - modal tworzenia notatki jest za duzy na malych ekranach latopach
 // - dodac animacje do wybierania koloru w tworzeniu kategorii
 // - skonczyłem na stworzeniu obiektu note i prowizorycznej walidacji
