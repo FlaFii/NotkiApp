@@ -424,13 +424,22 @@ table {
   outline: 2px solid #1b1c22;
 }
 .modal__view--add-note .category__box-option, .modal__view--edit-note .category__box-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
   width: 90%;
   margin-bottom: 0.6em;
-  padding: 0.8em;
+  padding: 0.8em 1.4em;
   font-size: 1.6rem;
   font-family: "Alegreya Sans SC", "sans-serif";
   font-weight: bold;
+  text-align: center;
   border-radius: 12px;
+}
+.modal__view--add-note .category__box-option .category__item-btn--delete, .modal__view--edit-note .category__box-option .category__item-btn--delete {
+  padding: 0.5em;
+  border-radius: 10px;
 }
 .modal__view--add-note .category__box-option:focus,
 .modal__view--add-note .category__box-option:active, .modal__view--edit-note .category__box-option:focus,
@@ -513,6 +522,9 @@ table {
 .modal__view--active {
   display: flex;
 }
+.modal__view--delete-all .question-title-danger {
+  color: #e42535;
+}
 .modal .controls {
   display: flex;
   flex-direction: column;
@@ -536,6 +548,9 @@ table {
   .modal__window {
     width: 80%;
   }
+  .modal__view--add-note .category__box-option, .modal__view--edit-note .category__box-option {
+    padding: 0.8em 2.4em;
+  }
 }
 @media (min-width: 768px) {
   .modal__window {
@@ -550,7 +565,11 @@ table {
   }
   .modal__view--add-note .category__box-option, .modal__view--edit-note .category__box-option {
     width: 85%;
-    padding: 1em;
+    padding: 0.8em 3.2em;
+  }
+  .modal__view--add-note .category__box-option .category__item-btn--delete, .modal__view--edit-note .category__box-option .category__item-btn--delete {
+    padding: 0.6em;
+    border-radius: 10px;
   }
   .modal__view-title {
     top: 1em;
@@ -573,6 +592,13 @@ table {
   }
   .modal .controls__btn {
     padding: 1em;
+  }
+  .modal__view--add-note .category__box-option, .modal__view--edit-note .category__box-option {
+    font-size: 1.8rem;
+    padding: 0.7em 3.2em;
+  }
+  .modal__view--add-note .category__box-option .category__item-btn--delete, .modal__view--edit-note .category__box-option .category__item-btn--delete {
+    padding: 0.7em;
   }
 }
 @media (min-width: 1200px) {

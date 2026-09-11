@@ -69,14 +69,23 @@
 			outline: 2px solid t.$font-dark;
 		}
 		.category__box-option {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			position: relative;
+
 			width: 90%;
 			margin-bottom: 0.6em;
-			padding: 0.8em;
+			padding: 0.8em 1.4em;
 			font-size: t.$text-md;
 			font-family: t.$heading-font;
 			font-weight: bold;
-			// background-color: t.$category-1;
+			text-align: center;
 			border-radius: t.$radius-md;
+		}
+		.category__box-option .category__item-btn--delete {
+			padding: 0.5em;
+			border-radius: t.$radius-sm;
 		}
 		.category__box-option:focus,
 		.category__box-option:active {
@@ -177,6 +186,11 @@
 	&__view--active {
 		display: flex;
 	}
+	&__view--delete-all {
+		.question-title-danger {
+			color: t.$danger-dark;
+		}
+	}
 	.controls {
 		display: flex;
 		flex-direction: column;
@@ -201,6 +215,12 @@
 		&__window {
 			width: 80%;
 		}
+		&__view--add-note,
+		&__view--edit-note {
+			.category__box-option {
+				padding: 0.8em 2.4em;
+			}
+		}
 	}
 }
 @media (min-width: 768px) {
@@ -223,7 +243,11 @@
 
 			.category__box-option {
 				width: 85%;
-				padding: 1em;
+				padding: 0.8em 3.2em;
+			}
+			.category__box-option .category__item-btn--delete {
+				padding: 0.6em;
+				border-radius: t.$radius-sm;
 			}
 		}
 		&__view-title {
@@ -252,6 +276,16 @@
 		.controls {
 			&__btn {
 				padding: 1em;
+			}
+		}
+		&__view--add-note,
+		&__view--edit-note {
+			.category__box-option {
+				font-size: t.$text-md-plus;
+				padding: 0.7em 3.2em;
+			}
+			.category__box-option .category__item-btn--delete {
+				padding: 0.7em;
 			}
 		}
 	}

@@ -36,7 +36,10 @@ let asideAddBtn,
 	editNoteTitleInput,
 	editNoteContentInput,
 	editNoteForm,
-	deleteNoteForm;
+	deleteNoteForm,
+	deleteAllNotesForm,
+	searchForm,
+	searchInput;
 
 const main = () => {
 	prepareDOMElements();
@@ -89,6 +92,7 @@ const prepareDOMElements = () => {
 	editNoteContentInput = modalViewEditNote.querySelector("#content");
 	editNoteForm = modalViewEditNote.querySelector(".form");
 	deleteNoteForm = modalViewDeleteNote.querySelector(".form");
+	deleteAllNotesForm = modalViewDeleteAll.querySelector(".form");
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
@@ -121,6 +125,7 @@ const prepareDOMEvents = () => {
 	addNoteForm.addEventListener("submit", addNoteHandle);
 	editNoteForm.addEventListener("submit", editNoteHandle);
 	deleteNoteForm.addEventListener("submit", deleteNoteHandle);
+	deleteAllNotesForm.addEventListener("submit", deleteAllNotesHandle);
 };
 const openModal = (modalView) => {
 	closeModal();
@@ -154,8 +159,20 @@ const renderCategories = () => {
 			catBtn.classList.add("category__box-option", category.color);
 			catBtn.textContent = category.name;
 			catBtn.dataset.categoryId = category.id;
-
 			box.append(catBtn);
+			const catDeleteBtn = document.createElement("button");
+			catDeleteBtn.type = "button";
+			catDeleteBtn.classList.add(
+				"category__item-btn",
+				"category__item-btn--delete",
+				"secondary-btn",
+				"secondary-btn--delete",
+			);
+			catDeleteBtn.dataset.dataAction = "notes-btn-delete";
+			catDeleteBtn.title = "Usuń kategorię";
+			catDeleteBtn.innerHTML = `<img src="./icons/trash.svg" alt="">`;
+			catDeleteBtn.addEventListener("click", () => catDeleteHandle(category));
+			catBtn.append(catDeleteBtn);
 		});
 		const addCatBtn = document.createElement("button");
 		addCatBtn.type = "button";
@@ -371,6 +388,24 @@ const deleteNoteHandle = () => {
 	saveNotesToLocalStorage();
 	renderNotes();
 	closeModal();
+};
+const deleteAllNotesHandle = (e) => {
+	e.preventDefault();
+	notesArray.length = 0;
+	saveNotesToLocalStorage();
+	renderNotes();
+	closeModal();
+};
+const catDeleteHandle = (category) => {
+	const catId = category.id;
+	const catIndex = categoriesArray.findIndex(
+		(category) => catId === category.id,
+	);
+	if (catIndex !== -1) {
+		categoriesArray.splice(catIndex, 1);
+	}
+	saveCategoriesToLocalStorage();
+	renderCategories();
 };
 main();
 
