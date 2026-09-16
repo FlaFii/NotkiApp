@@ -168,18 +168,30 @@
                 <h2 class="question-title">Czy napewno chcesz usunąć <span
                         class="question-title-danger">wszystkie</span> notatki?</h2>
                 <form class="controls form">
-                    <button type="submit" class="controls__btn primary-btn">Tak usuń</button>
+                    <button type="submit" class="controls__btn primary-btn primary-btn--danger">Tak usuń</button>
                     <button data-action="modal-view-cancel-btn" type="button"
-                        class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
+                        class="controls__btn  primary-btn">Anuluj<button>
                 </form>
             </div>
 
             <div class="modal__view modal__view--delete-note ">
                 <h2 class="question-title">Czy napewno chcesz usunąć notatkę?</h2>
                 <form class="controls form">
-                    <button type="submit" class="controls__btn primary-btn">Tak usuń</button>
+                    <button type="submit" class="controls__btn primary-btn primary-btn--danger">Tak usuń</button>
                     <button data-action="modal-view-cancel-btn" type="button"
-                        class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
+                        class="controls__btn primary-btn ">Anuluj<button>
+                </form>
+            </div>
+            <div class="modal__view modal__view--delete-category ">
+                <h2 class="question-title">Usuwając kategorię <span class="question-title__category-name"></span>,
+                    zostaną także usunięte <span class="question-title-danger">wszystkie</span> notatki przypisane do
+                    niej (<span class="question-title__affected-notes"></span>). Czy na pewno chcesz kontynuować?
+                    <p>Jeśli chcesz zachować notatki, najpierw przypisz je do innej kategorii</p>
+                </h2>
+                <form class="controls form">
+                    <button type="submit" class="controls__btn primary-btn primary-btn--danger">Tak usuń</button>
+                    <button data-action="modal-view-cancel-btn" type="button"
+                        class="controls__btn primary-btn ">Anuluj<button>
                 </form>
             </div>
 

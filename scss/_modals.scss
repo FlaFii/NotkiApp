@@ -186,11 +186,27 @@
 	&__view--active {
 		display: flex;
 	}
-	&__view--delete-all {
+	&__view--delete-all,
+	&__view--delete-category {
 		.question-title-danger {
 			color: t.$danger-dark;
 		}
 	}
+	&__view--delete-category {
+		.question-title {
+			font-size: t.$text-md;
+			p {
+				margin-top: 1em;
+			}
+		}
+		.question-title__category-name {
+			color: t.$accent-dark;
+		}
+		.question-title__affected-notes {
+			color: t.$danger-dark;
+		}
+	}
+
 	.controls {
 		display: flex;
 		flex-direction: column;

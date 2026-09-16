@@ -522,7 +522,19 @@ table {
 .modal__view--active {
   display: flex;
 }
-.modal__view--delete-all .question-title-danger {
+.modal__view--delete-all .question-title-danger, .modal__view--delete-category .question-title-danger {
+  color: #e42535;
+}
+.modal__view--delete-category .question-title {
+  font-size: 1.6rem;
+}
+.modal__view--delete-category .question-title p {
+  margin-top: 1em;
+}
+.modal__view--delete-category .question-title__category-name {
+  color: #e08515;
+}
+.modal__view--delete-category .question-title__affected-notes {
   color: #e42535;
 }
 .modal .controls {

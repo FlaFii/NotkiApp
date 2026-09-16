@@ -14,6 +14,7 @@ let asideAddBtn,
 	modalViewAddCategory,
 	modalViewDeleteNote,
 	modalViewEditNote,
+	modalViewDeleteCat,
 	modalOverlay,
 	modalCloseBtn,
 	modalViews = [],
@@ -39,7 +40,10 @@ let asideAddBtn,
 	deleteNoteForm,
 	deleteAllNotesForm,
 	searchForm,
-	searchInput;
+	searchInput,
+	deleteCatForm,
+	catNameSpan,
+	affectedNotesSpan;
 
 const main = () => {
 	prepareDOMElements();
@@ -69,6 +73,7 @@ const prepareDOMElements = () => {
 	modalViewDeleteAll = document.querySelector(".modal__view--delete-all");
 	modalViewDeleteNote = document.querySelector(".modal__view--delete-note");
 	modalViewAddCategory = document.querySelector(".modal__view--add-category");
+	modalViewDeleteCat = document.querySelector(".modal__view--delete-category");
 	modalCloseBtn = modal.querySelector(".modal__window-close-btn");
 	modalViewCancelBtns = document.querySelectorAll(
 		'[data-action="modal-view-cancel-btn"]',
@@ -93,6 +98,15 @@ const prepareDOMElements = () => {
 	editNoteForm = modalViewEditNote.querySelector(".form");
 	deleteNoteForm = modalViewDeleteNote.querySelector(".form");
 	deleteAllNotesForm = modalViewDeleteAll.querySelector(".form");
+	searchForm = modalViewSearch.querySelector(".form__box");
+	searchInput = modalViewSearch.querySelector("#search");
+	deleteCatForm = modalViewDeleteCat.querySelector(".form");
+	catNameSpan = modalViewDeleteCat.querySelector(
+		".question-title__category-name",
+	);
+	affectedNotesSpan = modalViewDeleteCat.querySelector(
+		".question-title__affected-notes",
+	);
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
@@ -126,6 +140,8 @@ const prepareDOMEvents = () => {
 	editNoteForm.addEventListener("submit", editNoteHandle);
 	deleteNoteForm.addEventListener("submit", deleteNoteHandle);
 	deleteAllNotesForm.addEventListener("submit", deleteAllNotesHandle);
+	searchForm.addEventListener("submit", searchNotesHandle);
+	deleteCatForm.addEventListener("submit", catDeleteHandle);
 };
 const openModal = (modalView) => {
 	closeModal();
@@ -168,10 +184,13 @@ const renderCategories = () => {
 				"secondary-btn",
 				"secondary-btn--delete",
 			);
+			catDeleteBtn.addEventListener("click", () => {
+				catDeleteBtnHandle(category);
+			});
 			catDeleteBtn.dataset.dataAction = "notes-btn-delete";
 			catDeleteBtn.title = "Usuń kategorię";
 			catDeleteBtn.innerHTML = `<img src="./icons/trash.svg" alt="">`;
-			catDeleteBtn.addEventListener("click", () => catDeleteHandle(category));
+			// catDeleteBtn.addEventListener("click", () => catDeleteHandle(category));
 			catBtn.append(catDeleteBtn);
 		});
 		const addCatBtn = document.createElement("button");
@@ -396,16 +415,39 @@ const deleteAllNotesHandle = (e) => {
 	renderNotes();
 	closeModal();
 };
-const catDeleteHandle = (category) => {
-	const catId = category.id;
+const catDeleteBtnHandle = (category) => {
+	deleteCatForm.dataset.categoryId = category.id;
+	catNameSpan.innerText = category.name;
+	const affectedNotes = notesArray.filter(
+		(note) => Number(note.categoryId) === Number(category.id),
+	);
+	const affectedNotesCounter = affectedNotes.length;
+	affectedNotesSpan.innerText = affectedNotesCounter;
+	openModal(modalViewDeleteCat);
+};
+const catDeleteHandle = (e) => {
+	e.preventDefault();
+	const catId = Number(deleteCatForm.dataset.categoryId);
 	const catIndex = categoriesArray.findIndex(
 		(category) => catId === category.id,
 	);
 	if (catIndex !== -1) {
 		categoriesArray.splice(catIndex, 1);
 	}
+	notesArray = notesArray.filter((note) => Number(note.categoryId) !== catId);
+	console.log(notesArray);
+	saveNotesToLocalStorage();
 	saveCategoriesToLocalStorage();
 	renderCategories();
+	renderNotes();
+	closeModal();
+};
+const searchNotesHandle = () => {
+	if (searchInput === "") {
+		console.log("uzupelnij dane");
+		return;
+	}
+	console.log(notesArray.filter((title) => note.title === searchInput.value));
 };
 main();
 
