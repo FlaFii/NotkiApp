@@ -155,8 +155,12 @@ table {
   margin-right: 0.4em;
 }
 .notes__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   padding: 1.4em;
   border-radius: 12px;
+  height: 260px;
 }
 .notes__item-title {
   position: relative;
@@ -164,6 +168,7 @@ table {
   margin-bottom: 0.6em;
   font-family: "Alegreya Sans SC", "sans-serif";
   font-size: 2.4rem;
+  overflow-wrap: anywhere;
 }
 .notes__item-title::before {
   content: "";
@@ -183,7 +188,7 @@ table {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 2em;
+  margin-top: auto;
 }
 .notes__item-date {
   font-size: 1.6rem;
@@ -239,6 +244,7 @@ table {
   }
   .notes__item {
     margin: 0 1em;
+    height: 200px;
   }
   .notes__add-btn {
     width: 60%;
@@ -251,6 +257,7 @@ table {
   }
   .notes__item {
     margin: 0;
+    height: 240px;
   }
   .notes__add-btn {
     width: 50%;
@@ -260,17 +267,20 @@ table {
   .notes {
     grid-template-columns: repeat(3, 1fr);
   }
+  .notes__item {
+    height: 260px;
+  }
   .notes__item-title {
     margin-bottom: 0.8em;
-  }
-  .notes__item-bottom {
-    margin-top: 2.8em;
   }
   .notes__add-btn {
     width: 40%;
   }
 }
 @media (min-width: 1200px) {
+  .notes__item {
+    height: 250px;
+  }
   .notes__add-btn {
     width: 30%;
     padding: 0.9em 1.8em;
@@ -393,9 +403,11 @@ table {
   left: 50%;
   translate: -50% -50%;
   width: 90%;
-  padding: 2em 2em 3em 2em;
+  height: 95%;
+  padding: 1em 2em 3em 2em;
   border-radius: 12px;
   background-color: #fdfff7;
+  overflow-y: scroll;
   z-index: 10;
 }
 .modal__view-title {
@@ -565,6 +577,7 @@ table {
   color: #e08515;
 }
 .modal__view--note-preview .question-title span {
+  overflow-wrap: anywhere;
   margin-left: 0.4em;
   color: #1b1c22;
 }
@@ -610,6 +623,11 @@ table {
 }
 .modal .controls__btn:first-child {
   margin-bottom: 0.8em;
+}
+.modal .form-result {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #e42535;
 }
 
 @media (min-width: 576px) {

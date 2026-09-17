@@ -6,7 +6,6 @@
 	grid-template-rows: auto;
 	align-items: start;
 	align-self: flex-start;
-	// align-items: center;
 	width: 100%;
 	padding: 2em;
 	gap: 1.4em;
@@ -46,14 +45,19 @@
 		margin-right: 0.4em;
 	}
 	&__item {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
 		padding: 1.4em;
 		border-radius: t.$radius-md;
+		height: 260px;
 		&-title {
 			position: relative;
 			padding-bottom: 0.2em;
 			margin-bottom: 0.6em;
 			font-family: t.$heading-font;
 			font-size: t.$text-xl;
+			overflow-wrap: anywhere;
 		}
 		&-title::before {
 			content: "";
@@ -79,7 +83,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			margin-top: 2em;
+			margin-top: auto;
 		}
 		&-date {
 			font-size: t.$text-md;
@@ -138,6 +142,7 @@
 		gap: 1.8em;
 		&__item {
 			margin: 0 1em;
+			height: 200px;
 		}
 		&__add-btn {
 			width: 60%;
@@ -150,6 +155,7 @@
 		grid-template-columns: 1fr 1fr;
 		&__item {
 			margin: 0;
+			height: 240px;
 		}
 		&__add-btn {
 			width: 50%;
@@ -160,11 +166,9 @@
 	.notes {
 		grid-template-columns: repeat(3, 1fr);
 		&__item {
+			height: 260px;
 			&-title {
 				margin-bottom: 0.8em;
-			}
-			&-bottom {
-				margin-top: 2.8em;
 			}
 		}
 		&__add-btn {
@@ -174,6 +178,9 @@
 }
 @media (min-width: 1200px) {
 	.notes {
+		&__item{
+			height: 250px;
+		}
 		&__add-btn {
 			width: 30%;
 			padding: 0.9em 1.8em;

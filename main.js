@@ -53,7 +53,11 @@ let asideAddBtn,
 	filterCategoryInput,
 	notePreviewTitle,
 	notePreviewCategory,
-	notePreviewContent;
+	notePreviewContent,
+	addNoteResult,
+	editNoteResult,
+	filterNotesResult,
+	addCategoryResult;
 
 const main = () => {
 	prepareDOMElements();
@@ -70,11 +74,9 @@ const prepareDOMElements = () => {
 	asideDeleteAllBtn = document.querySelector(
 		'[data-action="aside-btn-delete-all"]',
 	);
-	// notesAddBtn = document.querySelector('[data-action="notes-btn-add"]');
 	notesDeleteBtn = document.querySelectorAll(
 		'[data-action="notes-btn-delete"]',
 	);
-	// notesEditBtn = document.querySelectorAll('[data-action="notes-btn-edit"]');
 	modal = document.querySelector(".modal");
 	modalViewAddNote = document.querySelector(".modal__view--add-note");
 	modalViewEditNote = document.querySelector(".modal__view--edit-note");
@@ -129,6 +131,10 @@ const prepareDOMElements = () => {
 		".note-category-span",
 	);
 	notePreviewContent = modalViewNotePreview.querySelector(".note-content-box");
+	addNoteResult = modalViewAddNote.querySelector(".form-result");
+	editNoteResult = modalViewEditNote.querySelector(".form-result");
+	filterNotesResult = modalViewFilter.querySelector(".form-result");
+	addCategoryResult = modalViewAddCategory.querySelector(".form-result");
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
@@ -136,9 +142,6 @@ const prepareDOMEvents = () => {
 	notesDeleteBtn.forEach((btn) =>
 		btn.addEventListener("click", () => openModal(modalViewDeleteNote)),
 	);
-	// notesEditBtn.forEach((btn) =>
-	// 	btn.addEventListener("click", () => openModal(modalViewEditNote)),
-	// );
 	asideSearchBtn.addEventListener("click", () => openModal(modalViewSearch));
 	asideFilterBtn.addEventListener("click", () => openModal(modalViewFilter));
 	asideDeleteAllBtn.addEventListener("click", () =>
@@ -157,7 +160,6 @@ const prepareDOMEvents = () => {
 	categoryBoxes.forEach((box) =>
 		box.addEventListener("click", handleCategoryBoxClick),
 	);
-	// nowe
 	addNoteForm.addEventListener("submit", addNoteHandle);
 	editNoteForm.addEventListener("submit", editNoteHandle);
 	deleteNoteForm.addEventListener("submit", deleteNoteHandle);
@@ -197,6 +199,11 @@ const handleEscapeKey = (e) => {
 	}
 };
 const closeModal = () => {
+	addNoteResult.innerText = "";
+	editNoteResult.innerText = "";
+	filterNotesResult.innerText = "";
+	addCategoryResult.innerText = "";
+
 	modal.classList.remove("modal--active");
 	modalViews.forEach((view) => {
 		view.classList.remove("modal__view--active");
@@ -233,7 +240,6 @@ const renderCategories = () => {
 			catDeleteBtn.dataset.dataAction = "notes-btn-delete";
 			catDeleteBtn.title = "Usuń kategorię";
 			catDeleteBtn.innerHTML = `<img src="./icons/trash.svg" alt="">`;
-			// catDeleteBtn.addEventListener("click", () => catDeleteHandle(category));
 			catBtn.append(catDeleteBtn);
 		});
 		const addCatBtn = document.createElement("button");
@@ -252,6 +258,7 @@ const renderCategories = () => {
 };
 const clearAddCategoryForm = () => {
 	addCategoryform.reset();
+	addCategoryResult.innerText = "";
 	addCategoryColorBtns.forEach((btn) => {
 		btn.classList.remove("category-color--active");
 		selectedCategoryColor = "";
@@ -260,8 +267,7 @@ const clearAddCategoryForm = () => {
 const addCategoryHandle = (e) => {
 	e.preventDefault();
 	if (addCategoryTitleInput.value === "" || selectedCategoryColor === "") {
-		console.log("uzupłnij dane =");
-		// tutaj trzeb bedzie dodać jeszcze jakis paragraf ktory bedzie wyswietlal błąd
+		addCategoryResult.innerText = "Uzupełnij wszystkie pola";
 	} else {
 		const category = {
 			id: Date.now(),
@@ -284,7 +290,6 @@ const handleCategoryBoxClick = (e) => {
 	const categoryBtn = e.target.closest("[data-category-id]");
 	if (categoryBtn) {
 		selectedCategoryId = categoryBtn.dataset.categoryId;
-		// console.log(selectedCategoryId);
 	}
 };
 const saveCategoriesToLocalStorage = () => {
@@ -303,7 +308,7 @@ const addNoteHandle = (e) => {
 		addNoteContentInput.value === "" ||
 		!selectedCategoryId
 	) {
-		console.log("uzupelnij wszystkie dane");
+		addNoteResult.innerText = "Uzupełnij wszystkie pola";
 		return;
 	}
 	const note = {
@@ -313,6 +318,7 @@ const addNoteHandle = (e) => {
 		categoryId: Number(selectedCategoryId),
 		createdAt: new Date().toISOString(),
 	};
+	addNoteResult.innerText = "";
 	notesArray.push(note);
 	saveNotesToLocalStorage();
 	renderNotes();
@@ -361,13 +367,17 @@ const renderNotes = (list = notesArray) => {
 		notesBox.append(notesItem);
 		const notesItemTitle = document.createElement("h2");
 		notesItemTitle.classList.add("notes__item-title");
-		notesItemTitle.innerText = note.title;
+		let previewTitle = note.title;
+		if (previewTitle.length > 23) {
+			previewTitle = previewTitle.slice(0, 23) + "...";
+		}
+		notesItemTitle.innerText = previewTitle;
 		notesItem.append(notesItemTitle);
 		const notesItemText = document.createElement("p");
 		notesItemText.classList.add("notes__item-text");
 		let previewContent = note.content;
-		if (previewContent.length > 445) {
-			previewContent = previewContent.slice(0, 445) + "...";
+		if (previewContent.length > 160) {
+			previewContent = previewContent.slice(0, 160) + "...";
 			notesItemText.innerText = previewContent;
 		} else {
 			notesItemText.innerText = previewContent;
@@ -439,7 +449,7 @@ const editNoteHandle = (e) => {
 		editNoteContentInput.value === "" ||
 		!selectedCategoryId
 	) {
-		console.log("uzupelnij wszystkie dane");
+		editNoteResult.innerText = "Uzupełnij wszystkie pola";
 		return;
 	}
 	const noteId = Number(editNoteForm.dataset.noteId);
@@ -449,6 +459,7 @@ const editNoteHandle = (e) => {
 	note.categoryId = Number(selectedCategoryId);
 	saveNotesToLocalStorage();
 	renderNotes();
+	editNoteResult.innerText = "";
 	addNoteTitleInput.value = "";
 	addNoteContentInput.value = "";
 	closeModal();
@@ -520,7 +531,7 @@ const filterNoteHandle = (e) => {
 	let results = notesArray;
 
 	if (!selectedDate && !categoryName) {
-		console.log("nie podano żadnych preferencji");
+		filterNotesResult.innerText = "Nie podano żadnych preferencji";
 		return;
 	} else if (selectedDate !== "" && !categoryName) {
 		results = results.filter(
@@ -544,6 +555,7 @@ const filterNoteHandle = (e) => {
 		);
 		if (!selectedCategory) {
 			renderNotes([]);
+			filterNotesResult.innerText = "";
 			closeModal();
 			return;
 		}
@@ -555,7 +567,7 @@ const filterNoteHandle = (e) => {
 			);
 		});
 	}
-
+	filterNotesResult.innerText = "";
 	filterDateInput.value = "";
 	filterCategoryInput.value = "";
 	renderNotes(results);
