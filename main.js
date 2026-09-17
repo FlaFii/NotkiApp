@@ -167,6 +167,24 @@ const prepareDOMEvents = () => {
 	headerSearchForm.addEventListener("submit", searchNotesHandle);
 	headerSearchInput.addEventListener("input", searchNotesHandle);
 	filterForm.addEventListener("submit", filterNoteHandle);
+	modalViewNotePreview.addEventListener("click", (e) => {
+		const editButton = e.target.closest('[data-action="notes-btn-edit"]');
+		const deleteButton = e.target.closest('[data-action="notes-btn-delete"]');
+
+		if (!editButton && !deleteButton) {
+			return;
+		}
+
+		const noteId = Number(modalViewNotePreview.dataset.noteId);
+
+		if (editButton) {
+			notesEditBtnHandle(noteId);
+		}
+
+		if (deleteButton) {
+			notesDeleteBtnHandle(noteId);
+		}
+	});
 };
 const openModal = (modalView) => {
 	closeModal();
@@ -332,9 +350,11 @@ const renderNotes = (list = notesArray) => {
 		notesItem.classList.add("notes__item", category.color);
 		notesItem.addEventListener("click", (e) => {
 			if (e.target.closest('[data-action="notes-btn-edit"]')) {
-				notesEditBtnHandle(note);
+				notesEditBtnHandle(note.id);
 			} else if (e.target.closest('[data-action="notes-btn-delete"]')) {
-				notesDeleteBtnHandle(note);
+				notesDeleteBtnHandle(note.id);
+			} else if (e.target.closest(".notes__item")) {
+				openNotePreviewHandle(note);
 			}
 		});
 		notesItem.dataset.noteId = note.id;
@@ -400,12 +420,17 @@ const notesAddBtnHandle = (e) => {
 		return;
 	}
 };
-const notesEditBtnHandle = (note) => {
+const notesEditBtnHandle = (noteId) => {
+	const note = notesArray.find((note) => note.id === Number(noteId));
+	if (!note) {
+		return;
+	}
+
 	editNoteTitleInput.value = note.title;
 	editNoteContentInput.value = note.content;
 	editNoteForm.dataset.noteId = note.id;
+	selectedCategoryId = note.categoryId;
 	openModal(modalViewEditNote);
-	return;
 };
 const editNoteHandle = (e) => {
 	e.preventDefault();
@@ -428,8 +453,8 @@ const editNoteHandle = (e) => {
 	addNoteContentInput.value = "";
 	closeModal();
 };
-const notesDeleteBtnHandle = (note) => {
-	deleteNoteForm.dataset.noteId = note.id;
+const notesDeleteBtnHandle = (noteId) => {
+	deleteNoteForm.dataset.noteId = noteId;
 	openModal(modalViewDeleteNote);
 };
 const deleteNoteHandle = () => {
@@ -530,10 +555,22 @@ const filterNoteHandle = (e) => {
 			);
 		});
 	}
+
 	filterDateInput.value = "";
 	filterCategoryInput.value = "";
 	renderNotes(results);
 	closeModal();
+};
+const openNotePreviewHandle = (note) => {
+	modalViewNotePreview.dataset.noteId = note.id;
+	const selectedCategory = categoriesArray.find(
+		(category) => category.id === note.categoryId,
+	);
+	console.log(selectedCategory);
+	notePreviewTitle.innerText = note.title;
+	notePreviewCategory.innerText = selectedCategory.name;
+	notePreviewContent.innerText = note.content;
+	openModal(modalViewNotePreview);
 };
 main();
 

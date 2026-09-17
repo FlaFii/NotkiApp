@@ -244,7 +244,7 @@
 			max-height: 160px;
 			min-height: 100px;
 			padding: 1em;
-			margin-bottom: 2em;
+			margin-bottom: 1em;
 			border: 2px solid t.$font-dark;
 			border-radius: t.$radius-sm;
 			font-size: t.$text-md;
@@ -252,6 +252,7 @@
 		}
 		.notes__item-controls {
 			align-self: flex-end;
+			margin-bottom: 2em;
 		}
 	}
 

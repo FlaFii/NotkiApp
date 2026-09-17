@@ -583,7 +583,7 @@ table {
   max-height: 160px;
   min-height: 100px;
   padding: 1em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   border: 2px solid #1b1c22;
   border-radius: 10px;
   font-size: 1.6rem;
@@ -591,6 +591,7 @@ table {
 }
 .modal__view--note-preview .notes__item-controls {
   align-self: flex-end;
+  margin-bottom: 2em;
 }
 .modal .controls {
   display: flex;
