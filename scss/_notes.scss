@@ -29,6 +29,19 @@
 			display: flex;
 		}
 	}
+	&__search-result {
+		position: absolute;
+		top: calc(50vh - 100%);
+		left: 50%;
+		translate: -50% -50%;
+		display: none;
+		color: t.$dark-bg-lighter;
+		font-family: t.$main-font;
+		font-size: t.$text-md;
+		&--active {
+			display: block;
+		}
+	}
 	&__add-btn-icon {
 		margin-right: 0.4em;
 	}

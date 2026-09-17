@@ -17,11 +17,11 @@
 <body>
     <header class="header">
         <h1 class="header__logo">NotkiApp</h1>
-        <div class="form__box">
+        <form class="form__box">
             <input class="form__box-input" type="text" placeholder="Wyszukaj tytuł">
-            <button data-action="header-btn-search" title="Wyszukaj tytuł" class="primary-btn"><img
+            <button data-action="header-btn-search" title="Wyszukaj tytuł" type="submit" class="primary-btn"><img
                     src="./icons/search.svg" alt=""></button>
-        </div>
+        </form>
     </header>
     <div class="wrapper">
         <aside class="aside">
@@ -37,9 +37,10 @@
             </div>
         </aside>
         <main class="notes">
-            <button data-action="notes-btn-add" title="Dodaj notatkę" class="notes__add-btn "><img
+            <!-- <p class="notes__search-result">Nie znaleziono wyników...</p> -->
+            <!-- <button data-action="notes-btn-add" title="Dodaj notatkę" class="notes__add-btn "><img
                     src="./icons/plus.svg" alt="" class="notes__add-btn-icon">
-                Dodaj notatkę </button>
+                Dodaj notatkę </button> -->
             <!-- <div class="notes__item">
                 <h2 class="notes__item-title">Tytuł notatki</h2>
                 <p class="notes__item-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut ratione minus
@@ -148,19 +149,21 @@
 
             <div class="modal__view modal__view--filter">
                 <h2 class="modal__view-title">filtry</h2>
-                <div class="form__box">
-                    <label class="form__box-title" for="date">Data:</label>
-                    <input class="form__box-input" type="text" id="date">
-                </div>
-                <div class="form__box">
-                    <label class="form__box-title" for="category">Kategoria:</label>
-                    <input class="form__box-input" type="text" id="category">
-                </div>
-                <div class="controls">
-                    <button type="submit" class="controls__btn primary-btn">Wyszukaj</button>
-                    <button data-action="modal-view-cancel-btn" type="button"
-                        class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
-                </div>
+                <form class="form">
+                    <div class="form__box">
+                        <label class="form__box-title" for="date">Data:</label>
+                        <input class="form__box-input" type="date" id="date">
+                    </div>
+                    <div class="form__box">
+                        <label class="form__box-title" for="category">Kategoria:</label>
+                        <input class="form__box-input" type="text" id="category">
+                    </div>
+                    <div class="controls">
+                        <button type="submit" class="controls__btn primary-btn">Wyszukaj</button>
+                        <button data-action="modal-view-cancel-btn" type="button"
+                            class="controls__btn primary-btn primary-btn--danger">Anuluj<button>
+                    </div>
+                </form>
             </div>
 
 
@@ -185,7 +188,7 @@
             <div class="modal__view modal__view--delete-category ">
                 <h2 class="question-title">Usuwając kategorię <span class="question-title__category-name"></span>,
                     zostaną także usunięte <span class="question-title-danger">wszystkie</span> notatki przypisane do
-                    niej (<span class="question-title__affected-notes"></span>). Czy na pewno chcesz kontynuować?
+                    niej [<span class="question-title__affected-notes"></span>]. Czy na pewno chcesz kontynuować?
                     <p>Jeśli chcesz zachować notatki, najpierw przypisz je do innej kategorii</p>
                 </h2>
                 <form class="controls form">
@@ -193,6 +196,25 @@
                     <button data-action="modal-view-cancel-btn" type="button"
                         class="controls__btn primary-btn ">Anuluj<button>
                 </form>
+            </div>
+
+            <div class="modal__view modal__view--note-preview ">
+                <h2 class="question-title note-title">Tytuł: <span class="note-title-span"></span></h2>
+                <h2 class="question-title note-category">Kategoria: <span class="note-category-span"> </span></h2>
+                <h2 class="question-title note-content-title">Treść:</h2>
+                <p class="note-content-box"></p>
+                <div class="notes__item-controls">
+                    <button data-action="notes-btn-delete" title="Usuń notatkę"
+                        class="notes__item-btn notes__item-btn--delete secondary-btn secondary-btn--delete"><img
+                            src="./icons/trash.svg" alt=""></button>
+                    <button data-action="notes-btn-edit" title="Edytuj notatkę"
+                        class="notes__item-btn notes__item-btn--edit secondary-btn"><img src="./icons/edit.svg"
+                            alt=""></button>
+                </div>
+                <div class="controls">
+                    <button data-action="modal-view-cancel-btn" type="button"
+                        class="controls__btn primary-btn ">Zamknij<button>
+                </div>
             </div>
 
             <div class="modal__view modal__view--add-category ">

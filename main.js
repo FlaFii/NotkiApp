@@ -15,6 +15,7 @@ let asideAddBtn,
 	modalViewDeleteNote,
 	modalViewEditNote,
 	modalViewDeleteCat,
+	modalViewNotePreview,
 	modalOverlay,
 	modalCloseBtn,
 	modalViews = [],
@@ -43,7 +44,16 @@ let asideAddBtn,
 	searchInput,
 	deleteCatForm,
 	catNameSpan,
-	affectedNotesSpan;
+	affectedNotesSpan,
+	header,
+	headerSearchForm,
+	headerSearchInput,
+	filterForm,
+	filterDateInput,
+	filterCategoryInput,
+	notePreviewTitle,
+	notePreviewCategory,
+	notePreviewContent;
 
 const main = () => {
 	prepareDOMElements();
@@ -74,6 +84,7 @@ const prepareDOMElements = () => {
 	modalViewDeleteNote = document.querySelector(".modal__view--delete-note");
 	modalViewAddCategory = document.querySelector(".modal__view--add-category");
 	modalViewDeleteCat = document.querySelector(".modal__view--delete-category");
+	modalViewNotePreview = document.querySelector(".modal__view--note-preview");
 	modalCloseBtn = modal.querySelector(".modal__window-close-btn");
 	modalViewCancelBtns = document.querySelectorAll(
 		'[data-action="modal-view-cancel-btn"]',
@@ -107,6 +118,17 @@ const prepareDOMElements = () => {
 	affectedNotesSpan = modalViewDeleteCat.querySelector(
 		".question-title__affected-notes",
 	);
+	header = document.querySelector(".header");
+	headerSearchForm = header.querySelector(".form__box");
+	headerSearchInput = headerSearchForm.querySelector(".form__box-input");
+	filterForm = modalViewFilter.querySelector(".form");
+	filterDateInput = filterForm.querySelector("#date");
+	filterCategoryInput = filterForm.querySelector("#category");
+	notePreviewTitle = modalViewNotePreview.querySelector(".note-title-span");
+	notePreviewCategory = modalViewNotePreview.querySelector(
+		".note-category-span",
+	);
+	notePreviewContent = modalViewNotePreview.querySelector(".note-content-box");
 };
 const prepareDOMEvents = () => {
 	asideAddBtn.addEventListener("click", () => openModal(modalViewAddNote));
@@ -142,6 +164,9 @@ const prepareDOMEvents = () => {
 	deleteAllNotesForm.addEventListener("submit", deleteAllNotesHandle);
 	searchForm.addEventListener("submit", searchNotesHandle);
 	deleteCatForm.addEventListener("submit", catDeleteHandle);
+	headerSearchForm.addEventListener("submit", searchNotesHandle);
+	headerSearchInput.addEventListener("input", searchNotesHandle);
+	filterForm.addEventListener("submit", filterNoteHandle);
 };
 const openModal = (modalView) => {
 	closeModal();
@@ -278,7 +303,7 @@ const addNoteHandle = (e) => {
 	closeModal();
 };
 
-const renderNotes = () => {
+const renderNotes = (list = notesArray) => {
 	notesBox.innerHTML = "";
 	if (notesArray.length === 0) {
 		const notesBtnAdd = document.createElement("button");
@@ -289,7 +314,16 @@ const renderNotes = () => {
 			'<img src="./icons/plus.svg" alt="" class="notes__add-btn-icon">Dodaj notatkę';
 		notesBox.append(notesBtnAdd);
 	}
-	notesArray.forEach((note) => {
+	if (notesArray.length > 0 && list.length === 0) {
+		const notesSearchResult = document.createElement("p");
+		notesSearchResult.classList.add(
+			"notes__search-result",
+			"notes__search-result--active",
+		);
+		notesSearchResult.innerText = "Nie znaleziono wyników...";
+		notesBox.append(notesSearchResult);
+	}
+	list.forEach((note) => {
 		const category = categoriesArray.find(
 			(category) => category.id === note.categoryId,
 		);
@@ -435,19 +469,71 @@ const catDeleteHandle = (e) => {
 		categoriesArray.splice(catIndex, 1);
 	}
 	notesArray = notesArray.filter((note) => Number(note.categoryId) !== catId);
-	console.log(notesArray);
 	saveNotesToLocalStorage();
 	saveCategoriesToLocalStorage();
 	renderCategories();
 	renderNotes();
 	closeModal();
 };
-const searchNotesHandle = () => {
-	if (searchInput === "") {
-		console.log("uzupelnij dane");
+const searchNotesHandle = (e) => {
+	e.preventDefault();
+	const searchQuestion =
+		searchInput.value.trim().toLowerCase() ||
+		headerSearchInput.value.trim().toLowerCase();
+	const searchResult = notesArray.filter((note) =>
+		note.title.toLowerCase().includes(searchQuestion),
+	);
+	renderNotes(searchResult);
+	closeModal();
+};
+const filterNoteHandle = (e) => {
+	e.preventDefault();
+	const selectedDate = filterDateInput.value;
+	const categoryName = filterCategoryInput.value.trim().toLowerCase();
+
+	let selectedCategory;
+	let results = notesArray;
+
+	if (!selectedDate && !categoryName) {
+		console.log("nie podano żadnych preferencji");
 		return;
+	} else if (selectedDate !== "" && !categoryName) {
+		results = results.filter(
+			(note) => note.createdAt.slice(0, 10) === selectedDate,
+		);
+	} else if (!selectedDate && categoryName !== "") {
+		selectedCategory = categoriesArray.find(
+			(category) => category.name.toLowerCase() === categoryName,
+		);
+		if (!selectedCategory) {
+			filterDateInput.value = "";
+			filterCategoryInput.value = "";
+			renderNotes([]);
+			closeModal();
+			return;
+		}
+		results = results.filter((note) => note.categoryId === selectedCategory.id);
+	} else if (selectedDate !== "" && categoryName !== "") {
+		selectedCategory = categoriesArray.find(
+			(category) => category.name.toLowerCase() === categoryName,
+		);
+		if (!selectedCategory) {
+			renderNotes([]);
+			closeModal();
+			return;
+		}
+		console.log(selectedCategory);
+		results = results.filter((note) => {
+			return (
+				note.categoryId === selectedCategory.id &&
+				note.createdAt.slice(0, 10) === selectedDate
+			);
+		});
 	}
-	console.log(notesArray.filter((title) => note.title === searchInput.value));
+	filterDateInput.value = "";
+	filterCategoryInput.value = "";
+	renderNotes(results);
+	closeModal();
 };
 main();
 
