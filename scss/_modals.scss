@@ -174,7 +174,7 @@
 			place-items: center;
 			grid-template-columns: repeat(4, 1fr);
 			grid-template-rows: repeat(3, 1fr);
-			gap: 1em;
+			gap: 0;
 		}
 	}
 	&__view--active {
@@ -215,7 +215,11 @@
 				color: t.$font-dark;
 			}
 		}
-		.question-title::before {
+		.question-title:last-of-type {
+			margin-bottom: 0.5em;
+		}
+		.note-category::before,
+		.note-title::before {
 			content: "";
 			position: absolute;
 			left: 0;
@@ -281,6 +285,11 @@
 		&__view--edit-note {
 			.category__box-option {
 				padding: 0.8em 2.4em;
+			}
+		}
+		&__view--add-category {
+			.category__color-box {
+				gap: 1em;
 			}
 		}
 	}

@@ -306,6 +306,17 @@ table {
   background: none;
   border: 3px solid #ec9832;
   border-radius: 10px;
+  color: #1b1c22;
+}
+
+.primary-btn,
+.primary-btn:visited {
+  color: #1b1c22;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .primary-btn:active,
@@ -317,6 +328,7 @@ table {
 
 .primary-btn--danger {
   border: 3px solid #e94957;
+  color: #1b1c22;
 }
 
 .primary-btn--danger:active,
@@ -546,7 +558,7 @@ table {
   place-items: center;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 1em;
+  gap: 0;
 }
 .modal__view--active {
   display: flex;
@@ -582,7 +594,11 @@ table {
   margin-left: 0.4em;
   color: #1b1c22;
 }
-.modal__view--note-preview .question-title::before {
+.modal__view--note-preview .question-title:last-of-type {
+  margin-bottom: 0.5em;
+}
+.modal__view--note-preview .note-category::before,
+.modal__view--note-preview .note-title::before {
   content: "";
   position: absolute;
   left: 0;
@@ -637,6 +653,9 @@ table {
   }
   .modal__view--add-note .category__box-option, .modal__view--edit-note .category__box-option {
     padding: 0.8em 2.4em;
+  }
+  .modal__view--add-category .category__color-box {
+    gap: 1em;
   }
 }
 @media (min-width: 768px) {

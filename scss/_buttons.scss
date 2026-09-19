@@ -6,6 +6,14 @@
 	background: none;
 	border: 3px solid t.$accent;
 	border-radius: t.$radius-sm;
+	color: t.$font-dark;
+}
+.primary-btn,
+.primary-btn:visited {
+	color: t.$font-dark;
+	appearance: none;
+	font-family: inherit;
+	font-size: inherit;
 }
 .primary-btn:active,
 .primary-btn:focus {
@@ -15,6 +23,7 @@
 }
 .primary-btn--danger {
 	border: 3px solid t.$danger;
+	color: t.$font-dark;
 }
 .primary-btn--danger:active,
 .primary-btn--danger:focus {
@@ -67,6 +76,5 @@
 	border-radius: t.$radius-md;
 }
 
-@media (min-width: 768px){
-	
+@media (min-width: 768px) {
 }

@@ -4,7 +4,6 @@ let asideAddBtn,
 	asideDeleteAllBtn,
 	notesAddBtn,
 	notesDeleteBtn = [],
-	// notesEditBtn = [],
 	modalViewCancelBtns = [],
 	modal,
 	modalViewAddNote,
@@ -19,7 +18,6 @@ let asideAddBtn,
 	modalOverlay,
 	modalCloseBtn,
 	modalViews = [],
-	// formularz do add category
 	addCategoryform,
 	addCategoryTitleInput,
 	addCategorySubmitBtn,
@@ -28,7 +26,6 @@ let asideAddBtn,
 	categoriesArray = [],
 	categoryBoxes = [],
 	returnModalView = null,
-	// nowe
 	notesArray = [],
 	addNoteForm,
 	addNoteTitleInput,
@@ -434,7 +431,6 @@ const notesEditBtnHandle = (noteId) => {
 	if (!note) {
 		return;
 	}
-
 	editNoteTitleInput.value = note.title;
 	editNoteContentInput.value = note.content;
 	editNoteForm.dataset.noteId = note.id;
@@ -558,7 +554,6 @@ const filterNoteHandle = (e) => {
 			closeModal();
 			return;
 		}
-		console.log(selectedCategory);
 		results = results.filter((note) => {
 			return (
 				note.categoryId === selectedCategory.id &&
@@ -577,14 +572,9 @@ const openNotePreviewHandle = (note) => {
 	const selectedCategory = categoriesArray.find(
 		(category) => category.id === note.categoryId,
 	);
-	console.log(selectedCategory);
 	notePreviewTitle.innerText = note.title;
 	notePreviewCategory.innerText = selectedCategory.name;
 	notePreviewContent.innerText = note.content;
 	openModal(modalViewNotePreview);
 };
 main();
-
-// - modal tworzenia notatki jest za duzy na malych ekranach latopach
-// - dodac animacje do wybierania koloru w tworzeniu kategorii
-// - skonczyłem na stworzeniu obiektu note i prowizorycznej walidacji
