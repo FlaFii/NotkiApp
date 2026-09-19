@@ -10,7 +10,7 @@ Ten projekt zaprojektowałem i zrobiłem sam aby bardziej opanować sterowanie s
 
 ## 🔗 Live demo
 
-tutaj bedzie link do live demo
+[Libe Demo Link](https://flafii.github.io/NotkiApp/)
 
 ---
 
@@ -56,7 +56,7 @@ tutaj bedzie link do live demo
 
 ```bash
 # sklonuj repozytorium
-git clone tUTAJ LINK DO REPO@@@@@@@@@@@@
+git clone https://github.com/FlaFii/NotkiApp
 
 # otwórz
 cd NotkiApp
