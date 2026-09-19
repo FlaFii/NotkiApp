@@ -31,11 +31,11 @@ Ten projekt zaprojektowałem i zrobiłem sam aby bardziej opanować sterowanie s
 ## ✨ Funkcje
 
 - Zarządzanie Notatkami
-  -- tworzenie notatek
-  -- edycja notatek
-  -- usuwanie wszystkich i pojedyńczych notatek
-  -- przypisywanie kategorii do notatek
-  -- wiele zabezpieczeń przed przypadkowym kliknięciem (UX friendly)
+  --tworzenie notatek
+  --edycja notatek
+  --usuwanie wszystkich i pojedyńczych notatek
+  --przypisywanie kategorii do notatek
+  --wiele zabezpieczeń przed przypadkowym kliknięciem (UX friendly)
 - Zarządzanie Kategoriami
   -- tworzenie kategorii
   -- personalizacja kolorów kategorii
