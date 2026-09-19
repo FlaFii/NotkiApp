@@ -31,24 +31,24 @@ Ten projekt zaprojektowałem i zrobiłem sam aby bardziej opanować sterowanie s
 ## ✨ Funkcje
 
 - Zarządzanie Notatkami
-  --tworzenie notatek
-  --edycja notatek
-  --usuwanie wszystkich i pojedyńczych notatek
-  --przypisywanie kategorii do notatek
-  --wiele zabezpieczeń przed przypadkowym kliknięciem (UX friendly)
+  - tworzenie notatek
+  - edycja notatek
+  - usuwanie wszystkich i pojedyńczych notatek
+  - przypisywanie kategorii do notatek
+  - wiele zabezpieczeń przed przypadkowym kliknięciem (UX friendly)
 - Zarządzanie Kategoriami
-  -- tworzenie kategorii
-  -- personalizacja kolorów kategorii
-  -- usuwanie kategorii
-  -- zabezpieczenia przed przypadkowym usunięciem kategorii i notatek
+  - tworzenie kategorii
+  - personalizacja kolorów kategorii
+  - usuwanie kategorii
+  - zabezpieczenia przed przypadkowym usunięciem kategorii i notatek
 - Filtrowanie
-  -- filtrowanie po tytule (pasek wyszukiwania)
-  -- filtrowanie po dacie utworzenia notatki
-  -- filtrowanie po kategorii notatek
+  - filtrowanie po tytule (pasek wyszukiwania)
+  - filtrowanie po dacie utworzenia notatki
+  - filtrowanie po kategorii notatek
 - UI / UX
-  -- responsywny layout
-  -- zapisywanie danych w localstorage
-  -- filtry i przyciski (mobile friendly)
+  - responsywny layout
+  - zapisywanie danych w localstorage
+  - filtry i przyciski (mobile friendly)
 
 ---
 
