@@ -10,7 +10,7 @@ Ten projekt zaprojektowałem i zrobiłem sam aby bardziej opanować sterowanie s
 
 ## 🔗 Live demo
 
-[Live Demo Link](https://flafii.github.io/NotkiApp/)
+[Live Demo Link](https://mszymus.github.io/NotkiApp/)
 
 ---
 
@@ -56,7 +56,7 @@ Ten projekt zaprojektowałem i zrobiłem sam aby bardziej opanować sterowanie s
 
 ```bash
 # sklonuj repozytorium
-git clone https://github.com/FlaFii/NotkiApp
+git clone https://github.com/mszymus/NotkiApp
 
 # otwórz
 cd NotkiApp
@@ -89,6 +89,6 @@ możliwe następne ulepszenia:
 
 ## 👤 Autor
 
-FlaFii • https://github.com/FlaFii
+Mateusz Szymuś • https://github.com/mszymus
 
 Kontakt: mateusz.szymus7@gmail.com
