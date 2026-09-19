@@ -89,6 +89,6 @@ możliwe następne ulepszenia:
 
 ## 👤 Autor
 
-Mateusz Szymuś • https://github.com/mszymus
+MateuszS • https://github.com/mszymus
 
 Kontakt: mateusz.szymus7@gmail.com
