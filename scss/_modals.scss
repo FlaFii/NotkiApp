@@ -25,11 +25,12 @@
 		left: 50%;
 		translate: -50% -50%;
 		width: 90%;
-		height: 95%;
+		height: auto;
+		max-height: 95vh;
 		padding: 1em 2em 3em 2em;
 		border-radius: t.$radius-md;
 		background-color: t.$light-bg;
-		overflow-y: scroll;
+		overflow-y: auto;
 		z-index: 10;
 	}
 	&__view-title {
@@ -77,7 +78,6 @@
 			justify-content: space-between;
 			align-items: center;
 			position: relative;
-
 			width: 90%;
 			margin-bottom: 0.6em;
 			padding: 0.8em 1.4em;
@@ -201,7 +201,7 @@
 		}
 	}
 	&__view--note-preview {
-		justify-content: flex-start;
+		justify-content: center;
 		align-items: flex-start;
 		margin-top: 1em;
 		.question-title {

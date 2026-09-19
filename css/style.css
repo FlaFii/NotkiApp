@@ -403,11 +403,12 @@ table {
   left: 50%;
   translate: -50% -50%;
   width: 90%;
-  height: 95%;
+  height: auto;
+  max-height: 95vh;
   padding: 1em 2em 3em 2em;
   border-radius: 12px;
   background-color: #fdfff7;
-  overflow-y: scroll;
+  overflow-y: auto;
   z-index: 10;
 }
 .modal__view-title {
@@ -566,7 +567,7 @@ table {
   color: #e42535;
 }
 .modal__view--note-preview {
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   margin-top: 1em;
 }

@@ -101,7 +101,6 @@ const prepareDOMElements = () => {
 		modalViewAddCategory.querySelectorAll(".category-color");
 	addCategoryform = modalViewAddCategory.querySelector(".form--add-category");
 	categoryBoxes = document.querySelectorAll(".category__box");
-	// nowe
 	addNoteForm = modalViewAddNote.querySelector(".form");
 	addNoteTitleInput = addNoteForm.querySelector("#title");
 	addNoteContentInput = addNoteForm.querySelector("#content");
