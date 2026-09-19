@@ -10,7 +10,7 @@ Ten projekt zaprojektowałem i zrobiłem sam aby bardziej opanować sterowanie s
 
 ## 🔗 Live demo
 
-[Libe Demo Link](https://flafii.github.io/NotkiApp/)
+[Live Demo Link](https://flafii.github.io/NotkiApp/)
 
 ---
 
